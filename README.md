@@ -25,6 +25,7 @@ In case you want to run your Django application from the terminal just run:
 2) Run Django
 
     $ python manage.py runserver $IP:$PORT
+    python manage.py runserver 0.0.0.0:8080
     
 ## Support & Documentation
 
