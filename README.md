@@ -27,6 +27,10 @@ In case you want to run your Django application from the terminal just run:
     $ python manage.py runserver $IP:$PORT
     python manage.py runserver 0.0.0.0:8080
     
+3) Start the postgresql service
+
+    $ sudo service postgresql start
+    
 ## Support & Documentation
 
 Django docs can be found at https://www.djangoproject.com/
