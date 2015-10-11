@@ -364,6 +364,204 @@ CREATE TABLE django_session (
 ALTER TABLE public.django_session OWNER TO postgres;
 
 --
+-- Name: viao_cultivo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE viao_cultivo (
+    id integer NOT NULL,
+    area integer NOT NULL,
+    "tipoMedida" character varying(3) NOT NULL,
+    "fechaRegsitro" date NOT NULL,
+    dueno_id integer NOT NULL,
+    jefe_id integer NOT NULL
+);
+
+
+ALTER TABLE public.viao_cultivo OWNER TO postgres;
+
+--
+-- Name: viao_cultivo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE viao_cultivo_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.viao_cultivo_id_seq OWNER TO postgres;
+
+--
+-- Name: viao_cultivo_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE viao_cultivo_id_seq OWNED BY viao_cultivo.id;
+
+
+--
+-- Name: viao_dueno; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE viao_dueno (
+    id integer NOT NULL,
+    perfil character varying(10) NOT NULL,
+    documento_id character varying(20) NOT NULL
+);
+
+
+ALTER TABLE public.viao_dueno OWNER TO postgres;
+
+--
+-- Name: viao_dueno_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE viao_dueno_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.viao_dueno_id_seq OWNER TO postgres;
+
+--
+-- Name: viao_dueno_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE viao_dueno_id_seq OWNED BY viao_dueno.id;
+
+
+--
+-- Name: viao_jefe; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE viao_jefe (
+    id integer NOT NULL,
+    perfil character varying(10) NOT NULL,
+    documento_id character varying(20) NOT NULL,
+    dueno_id integer NOT NULL
+);
+
+
+ALTER TABLE public.viao_jefe OWNER TO postgres;
+
+--
+-- Name: viao_jefe_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE viao_jefe_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.viao_jefe_id_seq OWNER TO postgres;
+
+--
+-- Name: viao_jefe_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE viao_jefe_id_seq OWNED BY viao_jefe.id;
+
+
+--
+-- Name: viao_lote; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE viao_lote (
+    id integer NOT NULL,
+    area integer NOT NULL,
+    "tipoMedida" character varying(3) NOT NULL,
+    "totalEstacas" integer NOT NULL,
+    "fechaRegsitro" date NOT NULL,
+    cultivo_id integer NOT NULL,
+    trabajador_id integer NOT NULL
+);
+
+
+ALTER TABLE public.viao_lote OWNER TO postgres;
+
+--
+-- Name: viao_lote_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE viao_lote_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.viao_lote_id_seq OWNER TO postgres;
+
+--
+-- Name: viao_lote_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE viao_lote_id_seq OWNED BY viao_lote.id;
+
+
+--
+-- Name: viao_persona; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE viao_persona (
+    documento character varying(20) NOT NULL,
+    tipo_documento character varying(2) NOT NULL,
+    nombre character varying(20) NOT NULL,
+    apellidos character varying(20) NOT NULL,
+    telefono character varying(20) NOT NULL,
+    direccion character varying(20) NOT NULL,
+    passw character varying(20) NOT NULL,
+    "fechaRegistro" date NOT NULL,
+    "fechaNacimiento" date NOT NULL
+);
+
+
+ALTER TABLE public.viao_persona OWNER TO postgres;
+
+--
+-- Name: viao_trabajador; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE viao_trabajador (
+    id integer NOT NULL,
+    perfil character varying(10) NOT NULL,
+    documento_id character varying(20) NOT NULL,
+    jefe_id integer NOT NULL
+);
+
+
+ALTER TABLE public.viao_trabajador OWNER TO postgres;
+
+--
+-- Name: viao_trabajador_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE viao_trabajador_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.viao_trabajador_id_seq OWNER TO postgres;
+
+--
+-- Name: viao_trabajador_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE viao_trabajador_id_seq OWNED BY viao_trabajador.id;
+
+
+--
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -427,6 +625,41 @@ ALTER TABLE ONLY django_migrations ALTER COLUMN id SET DEFAULT nextval('django_m
 
 
 --
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY viao_cultivo ALTER COLUMN id SET DEFAULT nextval('viao_cultivo_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY viao_dueno ALTER COLUMN id SET DEFAULT nextval('viao_dueno_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY viao_jefe ALTER COLUMN id SET DEFAULT nextval('viao_jefe_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY viao_lote ALTER COLUMN id SET DEFAULT nextval('viao_lote_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY viao_trabajador ALTER COLUMN id SET DEFAULT nextval('viao_trabajador_id_seq'::regclass);
+
+
+--
 -- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -479,6 +712,24 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 16	Can add session	6	add_session
 17	Can change session	6	change_session
 18	Can delete session	6	delete_session
+19	Can add persona	7	add_persona
+20	Can change persona	7	change_persona
+21	Can delete persona	7	delete_persona
+22	Can add dueno	8	add_dueno
+23	Can change dueno	8	change_dueno
+24	Can delete dueno	8	delete_dueno
+25	Can add jefe	9	add_jefe
+26	Can change jefe	9	change_jefe
+27	Can delete jefe	9	delete_jefe
+28	Can add trabajador	10	add_trabajador
+29	Can change trabajador	10	change_trabajador
+30	Can delete trabajador	10	delete_trabajador
+31	Can add cultivo	11	add_cultivo
+32	Can change cultivo	11	change_cultivo
+33	Can delete cultivo	11	delete_cultivo
+34	Can add lote	12	add_lote
+35	Can change lote	12	change_lote
+36	Can delete lote	12	delete_lote
 \.
 
 
@@ -486,7 +737,7 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('auth_permission_id_seq', 18, true);
+SELECT pg_catalog.setval('auth_permission_id_seq', 36, true);
 
 
 --
@@ -494,7 +745,7 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 18, true);
 --
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$20000$elhU5FCpXxR1$YZ5v1ige7hot1GqcoJFLtMrPRXy8rJQAGKze9BCeGQg=	2015-10-09 17:44:51.88772+00	t	postgres			dialej22@gmail.com	t	t	2015-10-09 17:36:50.431334+00
+1	pbkdf2_sha256$20000$elhU5FCpXxR1$YZ5v1ige7hot1GqcoJFLtMrPRXy8rJQAGKze9BCeGQg=	2015-10-09 20:45:08.822044+00	t	postgres			dialej22@gmail.com	t	t	2015-10-09 17:36:50.431334+00
 \.
 
 
@@ -561,6 +812,12 @@ COPY django_content_type (id, app_label, model) FROM stdin;
 4	auth	user
 5	contenttypes	contenttype
 6	sessions	session
+7	viao	persona
+8	viao	dueno
+9	viao	jefe
+10	viao	trabajador
+11	viao	cultivo
+12	viao	lote
 \.
 
 
@@ -568,7 +825,7 @@ COPY django_content_type (id, app_label, model) FROM stdin;
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('django_content_type_id_seq', 6, true);
+SELECT pg_catalog.setval('django_content_type_id_seq', 12, true);
 
 
 --
@@ -586,6 +843,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 8	auth	0005_alter_user_last_login_null	2015-10-09 17:35:49.617564+00
 9	auth	0006_require_contenttypes_0002	2015-10-09 17:35:49.62145+00
 10	sessions	0001_initial	2015-10-09 17:35:49.65217+00
+11	viao	0001_initial	2015-10-11 03:22:12.870246+00
 \.
 
 
@@ -593,7 +851,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 10, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 11, true);
 
 
 --
@@ -601,7 +859,91 @@ SELECT pg_catalog.setval('django_migrations_id_seq', 10, true);
 --
 
 COPY django_session (session_key, session_data, expire_date) FROM stdin;
+o75m164a6yedwqx1t6zrybaji3q3udxa	MDQ1YmYxNzRmMDAyYjhhYjdmZmE4YjNiNTMyMjJlZDkzMzNhOWViZTp7Il9hdXRoX3VzZXJfaGFzaCI6ImVhZDgxMTAyM2Q1MTY5MTg1ZjRmY2IyZDE5YWY2YTk5MTViNDBhY2IiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2015-10-23 20:45:08.827612+00
 \.
+
+
+--
+-- Data for Name: viao_cultivo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY viao_cultivo (id, area, "tipoMedida", "fechaRegsitro", dueno_id, jefe_id) FROM stdin;
+\.
+
+
+--
+-- Name: viao_cultivo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('viao_cultivo_id_seq', 1, false);
+
+
+--
+-- Data for Name: viao_dueno; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY viao_dueno (id, perfil, documento_id) FROM stdin;
+\.
+
+
+--
+-- Name: viao_dueno_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('viao_dueno_id_seq', 1, false);
+
+
+--
+-- Data for Name: viao_jefe; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY viao_jefe (id, perfil, documento_id, dueno_id) FROM stdin;
+\.
+
+
+--
+-- Name: viao_jefe_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('viao_jefe_id_seq', 1, false);
+
+
+--
+-- Data for Name: viao_lote; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY viao_lote (id, area, "tipoMedida", "totalEstacas", "fechaRegsitro", cultivo_id, trabajador_id) FROM stdin;
+\.
+
+
+--
+-- Name: viao_lote_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('viao_lote_id_seq', 1, false);
+
+
+--
+-- Data for Name: viao_persona; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY viao_persona (documento, tipo_documento, nombre, apellidos, telefono, direccion, passw, "fechaRegistro", "fechaNacimiento") FROM stdin;
+\.
+
+
+--
+-- Data for Name: viao_trabajador; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY viao_trabajador (id, perfil, documento_id, jefe_id) FROM stdin;
+\.
+
+
+--
+-- Name: viao_trabajador_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('viao_trabajador_id_seq', 1, false);
 
 
 --
@@ -741,6 +1083,54 @@ ALTER TABLE ONLY django_session
 
 
 --
+-- Name: viao_cultivo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY viao_cultivo
+    ADD CONSTRAINT viao_cultivo_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: viao_dueno_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY viao_dueno
+    ADD CONSTRAINT viao_dueno_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: viao_jefe_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY viao_jefe
+    ADD CONSTRAINT viao_jefe_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: viao_lote_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY viao_lote
+    ADD CONSTRAINT viao_lote_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: viao_persona_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY viao_persona
+    ADD CONSTRAINT viao_persona_pkey PRIMARY KEY (documento);
+
+
+--
+-- Name: viao_trabajador_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY viao_trabajador
+    ADD CONSTRAINT viao_trabajador_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: auth_group_name_253ae2a6331666e8_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -832,6 +1222,83 @@ CREATE INDEX django_session_session_key_461cfeaa630ca218_like ON django_session 
 
 
 --
+-- Name: viao_cultivo_a8aeee44; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX viao_cultivo_a8aeee44 ON viao_cultivo USING btree (dueno_id);
+
+
+--
+-- Name: viao_cultivo_bac5e582; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX viao_cultivo_bac5e582 ON viao_cultivo USING btree (jefe_id);
+
+
+--
+-- Name: viao_dueno_f3137d7b; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX viao_dueno_f3137d7b ON viao_dueno USING btree (documento_id);
+
+
+--
+-- Name: viao_jefe_a8aeee44; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX viao_jefe_a8aeee44 ON viao_jefe USING btree (dueno_id);
+
+
+--
+-- Name: viao_jefe_f3137d7b; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX viao_jefe_f3137d7b ON viao_jefe USING btree (documento_id);
+
+
+--
+-- Name: viao_lote_12b1cd18; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX viao_lote_12b1cd18 ON viao_lote USING btree (trabajador_id);
+
+
+--
+-- Name: viao_lote_1657c8b9; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX viao_lote_1657c8b9 ON viao_lote USING btree (cultivo_id);
+
+
+--
+-- Name: viao_persona_documento_4801b1aaa1b2c324_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX viao_persona_documento_4801b1aaa1b2c324_like ON viao_persona USING btree (documento varchar_pattern_ops);
+
+
+--
+-- Name: viao_trabajador_bac5e582; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX viao_trabajador_bac5e582 ON viao_trabajador USING btree (jefe_id);
+
+
+--
+-- Name: viao_trabajador_documento_id_2c3a3b9d8b49bbf2_like; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX viao_trabajador_documento_id_2c3a3b9d8b49bbf2_like ON viao_trabajador USING btree (documento_id varchar_pattern_ops);
+
+
+--
+-- Name: viao_trabajador_f3137d7b; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX viao_trabajador_f3137d7b ON viao_trabajador USING btree (documento_id);
+
+
+--
 -- Name: auth_content_type_id_508cf46651277a81_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -901,6 +1368,78 @@ ALTER TABLE ONLY django_admin_log
 
 ALTER TABLE ONLY django_admin_log
     ADD CONSTRAINT django_admin_log_user_id_52fdd58701c5f563_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: viao_cultivo_dueno_id_2f41f43c53331102_fk_viao_dueno_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY viao_cultivo
+    ADD CONSTRAINT viao_cultivo_dueno_id_2f41f43c53331102_fk_viao_dueno_id FOREIGN KEY (dueno_id) REFERENCES viao_dueno(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: viao_cultivo_jefe_id_794d2bd97feca408_fk_viao_jefe_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY viao_cultivo
+    ADD CONSTRAINT viao_cultivo_jefe_id_794d2bd97feca408_fk_viao_jefe_id FOREIGN KEY (jefe_id) REFERENCES viao_jefe(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: viao_du_documento_id_58b34b18a97c4b0a_fk_viao_persona_documento; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY viao_dueno
+    ADD CONSTRAINT viao_du_documento_id_58b34b18a97c4b0a_fk_viao_persona_documento FOREIGN KEY (documento_id) REFERENCES viao_persona(documento) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: viao_je_documento_id_54b1102e0c4a221e_fk_viao_persona_documento; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY viao_jefe
+    ADD CONSTRAINT viao_je_documento_id_54b1102e0c4a221e_fk_viao_persona_documento FOREIGN KEY (documento_id) REFERENCES viao_persona(documento) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: viao_jefe_dueno_id_17ffe62b7a3c81e9_fk_viao_dueno_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY viao_jefe
+    ADD CONSTRAINT viao_jefe_dueno_id_17ffe62b7a3c81e9_fk_viao_dueno_id FOREIGN KEY (dueno_id) REFERENCES viao_dueno(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: viao_lote_cultivo_id_2777da1f01fc8d04_fk_viao_cultivo_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY viao_lote
+    ADD CONSTRAINT viao_lote_cultivo_id_2777da1f01fc8d04_fk_viao_cultivo_id FOREIGN KEY (cultivo_id) REFERENCES viao_cultivo(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: viao_lote_trabajador_id_5f8857da34b96f85_fk_viao_trabajador_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY viao_lote
+    ADD CONSTRAINT viao_lote_trabajador_id_5f8857da34b96f85_fk_viao_trabajador_id FOREIGN KEY (trabajador_id) REFERENCES viao_trabajador(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: viao_tr_documento_id_2c3a3b9d8b49bbf2_fk_viao_persona_documento; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY viao_trabajador
+    ADD CONSTRAINT viao_tr_documento_id_2c3a3b9d8b49bbf2_fk_viao_persona_documento FOREIGN KEY (documento_id) REFERENCES viao_persona(documento) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: viao_trabajador_jefe_id_6ef0406afca27431_fk_viao_jefe_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY viao_trabajador
+    ADD CONSTRAINT viao_trabajador_jefe_id_6ef0406afca27431_fk_viao_jefe_id FOREIGN KEY (jefe_id) REFERENCES viao_jefe(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
