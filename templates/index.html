@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<body>
+<p> {{ fecha_actual }} </p> 
+{{ user.username}}
+
+<form name="form1" class="caja-sombra" method="POST">{% csrf_token %}
+  <div  align='center' >
+
+    	<br>
+		  <p><input  class="cajaredondeada4"  type="text" placeholder="Usuario" name="username" id="usu" required autofocus></p>
+
+		  <p><input  class="cajaredondeada4"  type="password"  placeholder="Password" name="password" id="pw" required></p>
+
+		<p><input type="submit" value="Entrar"></p>
+  </div>
+</form>
+</body>
+{% endblock %}

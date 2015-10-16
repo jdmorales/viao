@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Personas{% endblock %}
+{% block content %}
+
+{% for persona in personas %}
+   {{  persona.documento }} {{persona.username}}<br>
+{% endfor %}
+    <br>
+    <a href='/cerrar'><input  type="button" value="SALIR"></a>
+{% endblock %}

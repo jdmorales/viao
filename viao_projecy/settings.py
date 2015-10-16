@@ -23,11 +23,17 @@ SECRET_KEY = 'rgyjr8_0mf@@3y-b5!@xhy4j3b1k28qcnvl5ixmzk8c!-z#e1$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+from django.core.urlresolvers import reverse_lazy
+LOGIN_URL = reverse_lazy('login')
+LOGIN_REDIRECT_URL = reverse_lazy('crear_personas')
+LOGOUT_URL = reverse_lazy('logout')
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-         os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/'),
+         '/home/ubuntu/workspace/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

@@ -2,11 +2,14 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
+from django.conf import settings
+import django.contrib.auth.models
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('auth', '0006_require_contenttypes_0002'),
     ]
 
     operations = [
@@ -23,14 +26,12 @@ class Migration(migrations.Migration):
             name='Dueno',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('perfil', models.CharField(max_length=10)),
             ],
         ),
         migrations.CreateModel(
             name='Jefe',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('perfil', models.CharField(max_length=10)),
             ],
         ),
         migrations.CreateModel(
@@ -47,25 +48,42 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Persona',
             fields=[
+                ('user_ptr', models.OneToOneField(parent_link=True, auto_created=True, to=settings.AUTH_USER_MODEL)),
                 ('documento', models.CharField(max_length=20, serialize=False, primary_key=True)),
-                ('tipo_documento', models.CharField(max_length=2, choices=[(b'TI', b'Tarjeta de identidad'), (b'CC', b'Cedula de ciudadania')])),
-                ('nombre', models.CharField(max_length=20)),
-                ('apellidos', models.CharField(max_length=20)),
-                ('telefono', models.CharField(max_length=20)),
-                ('direccion', models.CharField(max_length=20)),
-                ('passw', models.CharField(max_length=20)),
-                ('fechaRegistro', models.DateField()),
-                ('fechaNacimiento', models.DateField()),
+                ('tipo_usuario', models.CharField(max_length=10)),
+                ('telefono', models.CharField(max_length=20, null=True)),
+                ('direccion', models.CharField(max_length=20, null=True, blank=True)),
+                ('fechaNacimiento', models.DateField(null=True)),
+            ],
+            options={
+                'abstract': False,
+                'verbose_name': 'user',
+                'verbose_name_plural': 'users',
+            },
+            bases=('auth.user',),
+            managers=[
+                ('objects', django.contrib.auth.models.UserManager()),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Tipo_documento',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('descripcion', models.CharField(max_length=20, choices=[(b'CC', b'Cedula Ciudadania'), (b'CE', b'Cedual Extrangera')])),
             ],
         ),
         migrations.CreateModel(
             name='Trabajador',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('perfil', models.CharField(max_length=10)),
                 ('documento', models.ForeignKey(to='viao.Persona')),
                 ('jefe', models.ForeignKey(to='viao.Jefe')),
             ],
+        ),
+        migrations.AddField(
+            model_name='persona',
+            name='tipo_documento',
+            field=models.ForeignKey(to='viao.Tipo_documento'),
         ),
         migrations.AddField(
             model_name='lote',
@@ -95,6 +113,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='cultivo',
             name='jefe',
-            field=models.ForeignKey(to='viao.Jefe'),
+            field=models.OneToOneField(to='viao.Jefe'),
         ),
     ]

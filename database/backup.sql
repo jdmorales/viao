@@ -730,6 +730,9 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 34	Can add lote	12	add_lote
 35	Can change lote	12	change_lote
 36	Can delete lote	12	delete_lote
+37	Can add tipo_documento	13	add_tipo_documento
+38	Can change tipo_documento	13	change_tipo_documento
+39	Can delete tipo_documento	13	delete_tipo_documento
 \.
 
 
@@ -737,7 +740,7 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('auth_permission_id_seq', 36, true);
+SELECT pg_catalog.setval('auth_permission_id_seq', 39, true);
 
 
 --
@@ -818,6 +821,7 @@ COPY django_content_type (id, app_label, model) FROM stdin;
 10	viao	trabajador
 11	viao	cultivo
 12	viao	lote
+13	viao	tipo_documento
 \.
 
 
@@ -825,7 +829,7 @@ COPY django_content_type (id, app_label, model) FROM stdin;
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('django_content_type_id_seq', 12, true);
+SELECT pg_catalog.setval('django_content_type_id_seq', 13, true);
 
 
 --
