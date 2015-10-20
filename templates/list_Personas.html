@@ -3,7 +3,7 @@
 {% block content %}
 
 {% for persona in personas %}
-   {{  persona.documento }} {{persona.username}}<br>
+   {{  persona.username }} {{persona.first_name}}<br>
 {% endfor %}
     <br>
     <a href='/cerrar'><input  type="button" value="SALIR"></a>

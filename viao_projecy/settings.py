@@ -25,7 +25,7 @@ DEBUG = True
 
 from django.core.urlresolvers import reverse_lazy
 LOGIN_URL = reverse_lazy('login')
-LOGIN_REDIRECT_URL = reverse_lazy('crear_personas')
+LOGIN_REDIRECT_URL = reverse_lazy('inicio')
 LOGOUT_URL = reverse_lazy('logout')
 
 
@@ -33,7 +33,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-         '/home/ubuntu/workspace/templates',
+            os.path.join(BASE_DIR,'templates'),
+         #'/home/ubuntu/workspace/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {

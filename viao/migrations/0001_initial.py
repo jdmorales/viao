@@ -23,18 +23,6 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Dueno',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Jefe',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-            ],
-        ),
-        migrations.CreateModel(
             name='Lote',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -50,9 +38,10 @@ class Migration(migrations.Migration):
             fields=[
                 ('user_ptr', models.OneToOneField(parent_link=True, auto_created=True, to=settings.AUTH_USER_MODEL)),
                 ('documento', models.CharField(max_length=20, serialize=False, primary_key=True)),
-                ('tipo_usuario', models.CharField(max_length=10)),
+                ('tipo_documento', models.CharField(max_length=20, choices=[(b'CC', b'Cedula Ciudadania'), (b'CE', b'Cedula Extrangera')])),
+                ('tipo_usuario', models.CharField(max_length=20)),
                 ('telefono', models.CharField(max_length=20, null=True)),
-                ('direccion', models.CharField(max_length=20, null=True, blank=True)),
+                ('direccion', models.CharField(max_length=30, null=True, blank=True)),
                 ('fechaNacimiento', models.DateField(null=True)),
             ],
             options={
@@ -66,44 +55,29 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Tipo_documento',
+            name='Dueno',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('descripcion', models.CharField(max_length=20, choices=[(b'CC', b'Cedula Ciudadania'), (b'CE', b'Cedual Extrangera')])),
+                ('documento', models.OneToOneField(primary_key=True, serialize=False, to='viao.Persona')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Jefe',
+            fields=[
+                ('documento', models.OneToOneField(primary_key=True, serialize=False, to='viao.Persona')),
+                ('dueno', models.ForeignKey(to='viao.Dueno')),
             ],
         ),
         migrations.CreateModel(
             name='Trabajador',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('documento', models.ForeignKey(to='viao.Persona')),
+                ('documento', models.OneToOneField(primary_key=True, serialize=False, to='viao.Persona')),
                 ('jefe', models.ForeignKey(to='viao.Jefe')),
             ],
-        ),
-        migrations.AddField(
-            model_name='persona',
-            name='tipo_documento',
-            field=models.ForeignKey(to='viao.Tipo_documento'),
         ),
         migrations.AddField(
             model_name='lote',
             name='trabajador',
             field=models.ForeignKey(to='viao.Trabajador'),
-        ),
-        migrations.AddField(
-            model_name='jefe',
-            name='documento',
-            field=models.ForeignKey(to='viao.Persona'),
-        ),
-        migrations.AddField(
-            model_name='jefe',
-            name='dueno',
-            field=models.ForeignKey(to='viao.Dueno'),
-        ),
-        migrations.AddField(
-            model_name='dueno',
-            name='documento',
-            field=models.ForeignKey(to='viao.Persona'),
         ),
         migrations.AddField(
             model_name='cultivo',

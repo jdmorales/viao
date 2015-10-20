@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Personas{% endblock %}
+{% block content %}
+
+    <div id="menu" > 
+        <br>
+        <a href='/crear/personas'>Registrar usuario</a>
+        <br>
+        {% if persona.tipo_usuario == "Dueno" %}
+            <a href='/cultivo'>Crear cultivo</a>
+            <br>
+        {% endif %}
+        <a href='/personas'>Ver usuario Registrados</a>
+    </div>
+    <br>
+    <a href='/cerrar'><input  type="button" value="SALIR"></a>
+{% endblock %}

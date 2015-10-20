@@ -1,6 +1,6 @@
-from django.conf.urls import include, url, patterns
+from django.conf.urls import include, url
 from django.contrib import admin
-from viao.views import horas_adelante,fpersonas,person
+from viao.views import horas_adelante,fpersonas,person,fcultivo,inicio
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -10,5 +10,7 @@ urlpatterns = [
     url(r'^crear/personas/$',fpersonas, name='crear_personas'),
     url(r'^$','django.contrib.auth.views.login', {'template_name':'index.html'},name='login'),
     url(r'^cerrar/$','django.contrib.auth.views.logout_then_login', name='logout'),
+    url(r'^cultivo/$',fcultivo, name='crear_cultivo'),
+    url(r'^inicio/$',inicio, name='inicio'),
 ]
 
