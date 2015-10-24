@@ -83,5 +83,8 @@ def fcultivo(request):
     
 @login_required(redirect_field_name=LOGIN_URL)
 def inicio(request):
-    persona=Persona.objects.get(username=request.user.username)
+    if  not request.user.is_superuser:
+        persona=Persona.objects.get(username=request.user.username)
+    else:
+        persona=User.objects.get(username=request.user.username)
     return render_to_response('inicio.html',{'persona':persona})
