@@ -2,7 +2,23 @@
 {% block title %}Crear Cultivo{% endblock %}
 {% block content %}
     <form action="" method="POST">{% csrf_token %}
-    {{ form.as_p }}
-    <input name='save' type="submit" value="Guardar"/>
+    	{{form.area.errors}}
+		<label>Área:</label>
+	    {{form.area}}
+	    <br>
+	    {{form.lotes.errors}}
+		<label>Cantidad de lotes:</label>
+	    {{form.lotes}}
+	    <br>
+	    {{form.jefe.errors}}
+	    <label>Jefe:</label>
+	    <select name="jefe">
+	    	<option>Elige un Jefe</option>
+			{% for jefe in jefes %}	
+	    		<option value="{{jefe.documento}}" >{{jefe.documento.first_name}}</option>
+			{% endfor %}
+	    </select><br><br>
+	    
+	    <input name='save' type="submit" value="Guardar"/>
     </form>
 {% endblock %}

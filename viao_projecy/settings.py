@@ -23,10 +23,7 @@ SECRET_KEY = 'rgyjr8_0mf@@3y-b5!@xhy4j3b1k28qcnvl5ixmzk8c!-z#e1$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-from django.core.urlresolvers import reverse_lazy
-LOGIN_URL = reverse_lazy('login')
-LOGIN_REDIRECT_URL = reverse_lazy('inicio')
-LOGOUT_URL = reverse_lazy('logout')
+
 
 
 TEMPLATES = [
@@ -34,7 +31,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR,'templates'),
-         #'/home/ubuntu/workspace/templates',
+         #'/home/alejo/viao_project/templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -45,8 +42,11 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
+       
     },
 ]
+
+
 
 ALLOWED_HOSTS = []
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -63,6 +63,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'viao',
 )
+
+from django.core.urlresolvers import reverse_lazy
+LOGIN_URL = reverse_lazy('login')
+LOGIN_REDIRECT_URL = reverse_lazy('inicio')
+LOGOUT_URL = reverse_lazy('logout')
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -111,3 +116,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+FRONTEND_URL = os.path.join(BASE_DIR,'Frontend')
+
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,'viao/static'),
+    FRONTEND_URL,
+)

@@ -1,0 +1,417 @@
+﻿@charset "utf-8";
+body {
+	font-family: 'Roboto Condensed', sans-serif;
+	margin: 0;
+	padding: 0;
+	color: #000;
+	background-color: #FFF;
+	background-image: url(../images/fondo.jpg);
+	background-repeat: repeat-x;
+	background-position: left top;
+	font-size: 85%;
+	
+}
+
+p {
+	padding: 0;
+	margin: 0;
+	}
+.n{
+	width: 15%;
+	height:42.5em;
+	float:left;
+	text-align: center;
+
+
+}
+.n2{
+	width: 84.99999%;
+	height:42.5em;
+	background-color:#fff;
+	float:left;
+
+}
+/*========Diseño LOGIN=========*/
+.login{
+	text-align: center;
+	border-collapse: collapse;
+	width: 100%;
+
+	font-size: 16px;
+	color: #000;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset; 
+	border: 1px solid #0489B1;
+	border-radius: 5px;
+}
+
+.bodyLogin{	
+
+	background-color: #009999;
+	box-shadow:10px 10px 20px rgba(0, 0, 0, 0.1) inset ;
+}
+.headLogin{
+	background-color: #fff;
+	box-shadow:10px 10px 20px rgba(0, 0, 0, 0.2) inset ;
+}
+/*===============Diseño Cabecera==================*/	
+#headprincipal{
+	height: 6em;
+	width: 100%;
+
+}
+#headlogo {
+	height: 6em;
+	width: 75%;
+	float: left;
+	/*background-color: #81BEF7;*/
+}
+#headusuario {
+	height: 6em;
+	width: 25%;
+	float: left;
+	
+}
+
+/*===============Diseño CAJA================*/
+#main{
+	width:100%;
+	height:90%;
+
+}
+
+#lateral1{
+	height:90%;
+	width:30%; /*34*/
+	background:#006699;
+	float:left;
+	text-align: center;
+
+}
+.cabecera-tabla-regventas{
+	width:70%;/*66*/
+	background:#006699;
+	float:left;
+	text-align: center;
+
+}
+#contenedor1{
+	height:85.5%;
+	width:70%;/*66*/
+	background:#81BEF7;
+	float:left;
+}
+#pie1{
+	height:23%;
+	width:34%;
+	background:#81BEF7;
+	float:left;
+}
+#pie{
+	height:23%;
+	width:66%;
+	background:#006699;
+	float:left;
+	text-align: center;
+}
+.registros{			/*CAmpo donde se muestran las ventas registradas*/
+	overflow-y: scroll;
+	overflow-x: hidden;
+	width:100%;
+	height:70%;
+}
+/*===========Diseño Campos Texto=============*/
+.cajaredondeada {
+	border-radius: 5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	width: 75%;
+	padding: 2%;
+	border: 1px solid #81BEF7;
+}
+.cajaredondeada2 {
+	border-radius: 5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	padding: 1%;
+	width: 50%;
+	border: 1px solid #81BEF7;
+}
+.cajaredondeada3 {
+	border-radius: 5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	padding: 0.5%;
+	width: 18%;
+	border: 1px solid #81BEF7;
+}
+.cajaredondeada4 {
+	border-radius: 5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	padding: 0.7%;
+	width: 27%;
+	border: 1px solid #81BEF7;
+}
+.suma-ventas{
+	background-color:#0099CC;
+	width: 100%;
+	border: hidden ;
+	font-size: 600%;
+	color: #ff0000;
+	text-align: center;
+	height: 98%;
+	
+}
+.efectivo{
+	background-color:#E0F8F7;
+	width: 100%;
+	border: hidden ;
+	color:  #0489B1;
+	
+	text-align: center;
+	height: 10%;
+	
+}
+.select-theme{
+	border-radius: 5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	width: 75%;
+	padding: 2%;
+	background: #026890 url("images/ui-bg_glass_45_0078ae_1x400.png") 50% 50% repeat-x;
+	border:1px solid #0489B1;
+	color: #fff;
+}
+
+.suma-ventas2{				
+	display: none;  /*Campo Oculto donde se guarda el valor actual de caja sin formatear*/
+	
+}
+.logo{
+	width: 20%;
+	height: 100%;  /*Tamaño Imagen asignada apra Logotipo*/
+}
+
+/*========Diseño Botones=============*/
+.boton {
+	background: #79c9ec url("images/ui-bg_glass_45_0078ae_1x400.png") 50% 50% repeat-x;
+	border:1px solid #0489B1;
+	color:#fff;
+	text-align:center;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	padding: 1%;
+	width:20%;
+	
+}
+.boton:hover { /*Cuando se tiene el click sobre el boton cambia de color*/
+	border: 1px solid #448dae;
+	background: #79c9ec url("images/ui-bg_glass_75_79c9ec_1x400.png") 50% 50% repeat-x;
+	color: #026890;
+	cursor:pointer;
+
+}
+.boton2 {
+	background: #79c9ec url("images/ui-bg_glass_45_0078ae_1x400.png") 50% 50% repeat-x;
+	border:1px solid #0489B1;
+	color:#fff;
+	text-align:center;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	padding: 2%;
+	width:40%;
+	font-size: 100%;
+	
+}
+.boton2:hover {
+	background: #79c9ec url("images/ui-bg_glass_75_79c9ec_1x400.png") 50% 50% repeat-x;
+	color: #026890;
+	cursor:pointer;
+}
+
+.boton3 {
+	background: #79c9ec url("images/ui-bg_glass_45_0078ae_1x400.png") 50% 50% repeat-x;
+	border:1px solid #0489B1;
+	color:#fff;
+	text-align:center;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	padding: 3%;
+	width:100%;
+	
+}
+.boton3:hover {
+	background: #79c9ec url("images/ui-bg_glass_75_79c9ec_1x400.png") 50% 50% repeat-x;
+	color: #026890;
+	cursor:pointer;
+}
+
+/*============Diseño CONFIGURACION===============*/
+
+#mainconfiguracion{
+	width:30%;
+	height:67%;
+	position: absolute;
+	margin:2% 35%;
+    box-shadow: 10px 15px 14px rgba(0, 0, 0, 0.3);
+    border: 3px solid #0489B1;
+	border-radius: 10px;
+
+}
+
+#headconfiguracion{
+	width:100%;
+	height:15%;
+	background: #79c9ec url("images/ui-bg_gloss-wave_75_2191c0_500x100.png") 50% 50% repeat-x;
+	text-align: center;
+}
+#configuracion1{
+	height:85%;
+	width:100%;
+	background:#006699;
+	text-align: center;
+	float: left;
+}
+/*Elemento auxiliar*/
+.borra{
+	clear:both;
+}
+
+/*==========Diseño AGREGAR==========*/
+
+#principal-agregar{
+	width:100%;
+	height:35em;
+	background:#006699;
+	
+	
+}
+.agregar-campos{
+	height:93%;
+	width:20%;
+	background:#006699;
+	float:left;	
+	color: #FFF;
+}
+
+.agregar-tablas{
+	height:70%;
+	width:78%;
+	background:#006699;
+	float:left;
+}
+.agregar-tablas2{
+	height:90%;
+	width:100%;
+	background:#81BEF7;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	float:left;	
+}
+
+/*----- Tabs -----*/
+.tabs {
+    width:100%;
+    height: 100%;
+    display:inline;
+
+}
+ 
+    /*----- Tab Links -----*/
+    /* Clearfix */
+    .tab-links:after {
+        display:inline-block;
+        clear:both;
+        content:'';
+        padding: 9.5px;
+    }
+ 
+    .tab-links li{
+        margin:0px 5px;
+        float:left;
+        list-style:none;
+        
+    }
+ 
+        .tab-links a {
+            padding:9px 15px;
+            display:inline-block;
+            border-radius:3px 3px 0px 0px;
+            background: #79c9ec url("images/ui-bg_glass_45_0078ae_1x400.png") 50% 50% repeat-x;
+            font-weight:600;
+            color:#fff;
+           
+        }
+ 
+        .tab-links a:hover {
+           background: #79c9ec url("images/ui-bg_glass_75_79c9ec_1x400.png") 50% 50% repeat-x;
+	color: #026890;
+            text-decoration:none;
+        }
+ 
+    li.active a, li.active a:hover {
+        background: #79c9ec url("images/ui-bg_gloss-wave_75_2191c0_500x100.png") 50% 50% repeat-x;
+        color: #000;
+    }
+ 
+    /*----- Content of Tabs -----*/
+    .tab-content {
+        padding: 5px;
+        border-radius:3px;
+        box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+        background-color:#0489B1;
+    }
+ 
+        .tab {
+            display:none;
+        }
+ 
+        .tab.active {
+            display:block;
+        }
+
+#frm_user{
+	width:40%;
+	height:20%;
+}
+#text-corte{
+	width:30%;
+	height:5%;
+	background: #81BEF7;
+}
+#text-corte2{
+	width:30%;
+	height:5%;
+	background: #fcfcfd;
+}
+.tablav{
+	/*text-align: center;*/
+	border: 1px;
+	border-collapse: collapse;
+	width: 100%;
+	font-size: 100%;
+	font-weight: 100%;
+
+}
+
+.tablav th{
+	/*font-size:10px;*/
+	background-color:#fff;
+
+}
+.vacio{
+	float: left;
+}
+.tabla-dinero-caja{
+
+	float: left;
+	width: 400px;
+}
+
+.tabla-salidas,.tabla-Entradas{
+	float: left;
+	width: 400px;
+}

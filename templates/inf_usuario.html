@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Personas{% endblock %}
+{% block content %}
+
+<h1 align="center">Informacion de perfil</h1><br>
+<div class="container jumbotron">
+
+  <label>Nombre: {{ user.first_name }} {{user.last_name}} </label><br>
+  <label>Documento: {{ user.documento }}</label><br>
+  <label>Telefono: {{ user.telefono }}</label><br>
+  <label>Direccion: {{user.direccion }}</label><br>
+  <label>Fecha Nacimiento: {{ user.fechaNacimiento }}</label><br>
+</div>
+<br>
+<div class="container">
+<table class="table table-hover">
+  {% if user.tipo_usuario == 'Dueno' %}
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Encargado</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+        {% for cultivo in asignaciones %}
+          <tr>
+            <td>{{cultivo.id}} </td>
+            <td>{{cultivo.jefe}}</td>
+        </tr>
+      {% endfor %} 
+    </tbody>
+    {% endif %}
+    {% if user.tipo_usuario == 'Jefe' %}
+    <thead>
+      <tr>
+        <th>Documento</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+        {% for trabajador in asignaciones %}
+          <tr>
+            <td>{{trabajador.documento}}</td>
+            <td>{{trabajador.documento.first_name}}</td>
+            <td>{{trabajador.documento.last_name}}</td>
+        </tr>
+      {% endfor %} 
+    </tbody>
+    {% endif %} 
+    {% if user.tipo_usuario == 'Trabajador' %}
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Fecha en que se registro</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+        {% for lote in asignaciones %}
+          <tr>
+            <td>{{lote.id}} </td>
+            <td>{{lote.totalEstacas}}</td>
+        </tr>
+      {% endfor %} 
+    </tbody>
+    {% endif %} 
+</table>
+</div>
+
+
+{% endblock %}

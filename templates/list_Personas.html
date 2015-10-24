@@ -2,9 +2,34 @@
 {% block title %}Personas{% endblock %}
 {% block content %}
 
-{% for persona in personas %}
-   {{  persona.username }} {{persona.first_name}}<br>
-{% endfor %}
-    <br>
-    <a href='/cerrar'><input  type="button" value="SALIR"></a>
+<div class="table-responsive container" >
+
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+       
+        <th>Documento</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+      	{% for persona in users %}
+      		<tr>
+      		 	
+        		<td>{{persona.documento}}</td>
+        		<td>{{persona.first_name}}</td>
+        		<td>{{persona.last_name}}</td>
+        		
+
+	   		</tr>
+		{% endfor %}
+      
+       
+      
+    </tbody>
+</table>
+</div>
 {% endblock %}
