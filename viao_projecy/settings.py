@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'viao_projecy.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -97,6 +97,19 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+'''
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'database',
+        'USER': 'derpbhndetroxr',
+        'PASSWORD': '2lpY6m_GI1wbRCzRykjqcQuQhg',
+        'HOST': 'ec2-54-225-192-128.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
