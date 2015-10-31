@@ -406,7 +406,6 @@ ALTER SEQUENCE viao_cultivo_id_seq OWNED BY viao_cultivo.id;
 
 CREATE TABLE viao_dueno (
     id integer NOT NULL,
-    perfil character varying(10) NOT NULL,
     documento_id character varying(20) NOT NULL
 );
 
@@ -440,7 +439,6 @@ ALTER SEQUENCE viao_dueno_id_seq OWNED BY viao_dueno.id;
 
 CREATE TABLE viao_jefe (
     id integer NOT NULL,
-    perfil character varying(10) NOT NULL,
     documento_id character varying(20) NOT NULL,
     dueno_id integer NOT NULL
 );
@@ -512,15 +510,13 @@ ALTER SEQUENCE viao_lote_id_seq OWNED BY viao_lote.id;
 --
 
 CREATE TABLE viao_persona (
+    user_ptr_id integer NOT NULL,
     documento character varying(20) NOT NULL,
-    tipo_documento character varying(2) NOT NULL,
-    nombre character varying(20) NOT NULL,
-    apellidos character varying(20) NOT NULL,
-    telefono character varying(20) NOT NULL,
-    direccion character varying(20) NOT NULL,
-    passw character varying(20) NOT NULL,
-    "fechaRegistro" date NOT NULL,
-    "fechaNacimiento" date NOT NULL
+    tipo_usuario character varying(10) NOT NULL,
+    telefono character varying(20),
+    direccion character varying(20),
+    "fechaNacimiento" date,
+    tipo_documento character varying(20) NOT NULL
 );
 
 
@@ -532,7 +528,6 @@ ALTER TABLE public.viao_persona OWNER TO postgres;
 
 CREATE TABLE viao_trabajador (
     id integer NOT NULL,
-    perfil character varying(10) NOT NULL,
     documento_id character varying(20) NOT NULL,
     jefe_id integer NOT NULL
 );
@@ -712,27 +707,24 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 16	Can add session	6	add_session
 17	Can change session	6	change_session
 18	Can delete session	6	delete_session
-19	Can add persona	7	add_persona
-20	Can change persona	7	change_persona
-21	Can delete persona	7	delete_persona
-22	Can add dueno	8	add_dueno
-23	Can change dueno	8	change_dueno
-24	Can delete dueno	8	delete_dueno
-25	Can add jefe	9	add_jefe
-26	Can change jefe	9	change_jefe
-27	Can delete jefe	9	delete_jefe
-28	Can add trabajador	10	add_trabajador
-29	Can change trabajador	10	change_trabajador
-30	Can delete trabajador	10	delete_trabajador
-31	Can add cultivo	11	add_cultivo
-32	Can change cultivo	11	change_cultivo
-33	Can delete cultivo	11	delete_cultivo
-34	Can add lote	12	add_lote
-35	Can change lote	12	change_lote
-36	Can delete lote	12	delete_lote
-37	Can add tipo_documento	13	add_tipo_documento
-38	Can change tipo_documento	13	change_tipo_documento
-39	Can delete tipo_documento	13	delete_tipo_documento
+22	Can add user	8	add_persona
+23	Can change user	8	change_persona
+24	Can delete user	8	delete_persona
+25	Can add dueno	9	add_dueno
+26	Can change dueno	9	change_dueno
+27	Can delete dueno	9	delete_dueno
+28	Can add jefe	10	add_jefe
+29	Can change jefe	10	change_jefe
+30	Can delete jefe	10	delete_jefe
+31	Can add trabajador	11	add_trabajador
+32	Can change trabajador	11	change_trabajador
+33	Can delete trabajador	11	delete_trabajador
+34	Can add cultivo	12	add_cultivo
+35	Can change cultivo	12	change_cultivo
+36	Can delete cultivo	12	delete_cultivo
+37	Can add lote	13	add_lote
+38	Can change lote	13	change_lote
+39	Can delete lote	13	delete_lote
 \.
 
 
@@ -748,7 +740,8 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 39, true);
 --
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$20000$elhU5FCpXxR1$YZ5v1ige7hot1GqcoJFLtMrPRXy8rJQAGKze9BCeGQg=	2015-10-09 20:45:08.822044+00	t	postgres			dialej22@gmail.com	t	t	2015-10-09 17:36:50.431334+00
+2	123456	\N	f	R2DA22	Diego Alejandro	Ramirez Ramirez	dialej22@gmail.com	f	t	2015-10-16 22:04:20.622335+00
+1	pbkdf2_sha256$20000$W1jBvQlf6YX9$Kp1w4SZPvGWpiPJZW/LxG/tEdkIs9gblUvzRZlydQ4s=	2015-10-16 22:08:24.034908+00	t	ubuntu			dialej22@gmail.com	t	t	2015-10-16 21:50:59.961781+00
 \.
 
 
@@ -771,7 +764,7 @@ SELECT pg_catalog.setval('auth_user_groups_id_seq', 1, false);
 -- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('auth_user_id_seq', 1, true);
+SELECT pg_catalog.setval('auth_user_id_seq', 2, true);
 
 
 --
@@ -815,13 +808,12 @@ COPY django_content_type (id, app_label, model) FROM stdin;
 4	auth	user
 5	contenttypes	contenttype
 6	sessions	session
-7	viao	persona
-8	viao	dueno
-9	viao	jefe
-10	viao	trabajador
-11	viao	cultivo
-12	viao	lote
-13	viao	tipo_documento
+8	viao	persona
+9	viao	dueno
+10	viao	jefe
+11	viao	trabajador
+12	viao	cultivo
+13	viao	lote
 \.
 
 
@@ -837,17 +829,18 @@ SELECT pg_catalog.setval('django_content_type_id_seq', 13, true);
 --
 
 COPY django_migrations (id, app, name, applied) FROM stdin;
-1	contenttypes	0001_initial	2015-10-09 17:35:49.043884+00
-2	auth	0001_initial	2015-10-09 17:35:49.241069+00
-3	admin	0001_initial	2015-10-09 17:35:49.290802+00
-4	contenttypes	0002_remove_content_type_name	2015-10-09 17:35:49.418344+00
-5	auth	0002_alter_permission_name_max_length	2015-10-09 17:35:49.43782+00
-6	auth	0003_alter_user_email_max_length	2015-10-09 17:35:49.462099+00
-7	auth	0004_alter_user_username_opts	2015-10-09 17:35:49.480539+00
-8	auth	0005_alter_user_last_login_null	2015-10-09 17:35:49.617564+00
-9	auth	0006_require_contenttypes_0002	2015-10-09 17:35:49.62145+00
-10	sessions	0001_initial	2015-10-09 17:35:49.65217+00
-11	viao	0001_initial	2015-10-11 03:22:12.870246+00
+1	contenttypes	0001_initial	2015-10-16 21:50:26.432284+00
+2	auth	0001_initial	2015-10-16 21:50:26.569556+00
+3	admin	0001_initial	2015-10-16 21:50:26.619206+00
+4	contenttypes	0002_remove_content_type_name	2015-10-16 21:50:26.67885+00
+5	auth	0002_alter_permission_name_max_length	2015-10-16 21:50:26.702131+00
+6	auth	0003_alter_user_email_max_length	2015-10-16 21:50:26.723673+00
+7	auth	0004_alter_user_username_opts	2015-10-16 21:50:26.743028+00
+8	auth	0005_alter_user_last_login_null	2015-10-16 21:50:26.762016+00
+9	auth	0006_require_contenttypes_0002	2015-10-16 21:50:26.765594+00
+10	sessions	0001_initial	2015-10-16 21:50:26.790106+00
+11	viao	0001_initial	2015-10-16 21:50:32.407397+00
+12	viao	0002_auto_20151016_1700	2015-10-16 22:00:07.817713+00
 \.
 
 
@@ -855,7 +848,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 11, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 12, true);
 
 
 --
@@ -863,7 +856,7 @@ SELECT pg_catalog.setval('django_migrations_id_seq', 11, true);
 --
 
 COPY django_session (session_key, session_data, expire_date) FROM stdin;
-o75m164a6yedwqx1t6zrybaji3q3udxa	MDQ1YmYxNzRmMDAyYjhhYjdmZmE4YjNiNTMyMjJlZDkzMzNhOWViZTp7Il9hdXRoX3VzZXJfaGFzaCI6ImVhZDgxMTAyM2Q1MTY5MTg1ZjRmY2IyZDE5YWY2YTk5MTViNDBhY2IiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2015-10-23 20:45:08.827612+00
+zf1vewupifvjtjf5wji7tbgzp3vbw5t7	ZWYyNDgxZjQzNWQyYzk0MTZlYWZmODJiOGJmNjhlODRiMzdiOGE5NDp7Il9hdXRoX3VzZXJfaGFzaCI6IjFiMmZmMjYwMmY0ZDhkNjM1OGI5ZjY3MTk4MjQzZGZkZmJlNGU3NzUiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2015-10-30 21:52:38.307874+00
 \.
 
 
@@ -886,7 +879,7 @@ SELECT pg_catalog.setval('viao_cultivo_id_seq', 1, false);
 -- Data for Name: viao_dueno; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY viao_dueno (id, perfil, documento_id) FROM stdin;
+COPY viao_dueno (id, documento_id) FROM stdin;
 \.
 
 
@@ -901,7 +894,7 @@ SELECT pg_catalog.setval('viao_dueno_id_seq', 1, false);
 -- Data for Name: viao_jefe; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY viao_jefe (id, perfil, documento_id, dueno_id) FROM stdin;
+COPY viao_jefe (id, documento_id, dueno_id) FROM stdin;
 \.
 
 
@@ -931,7 +924,8 @@ SELECT pg_catalog.setval('viao_lote_id_seq', 1, false);
 -- Data for Name: viao_persona; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY viao_persona (documento, tipo_documento, nombre, apellidos, telefono, direccion, passw, "fechaRegistro", "fechaNacimiento") FROM stdin;
+COPY viao_persona (user_ptr_id, documento, tipo_usuario, telefono, direccion, "fechaNacimiento", tipo_documento) FROM stdin;
+2	1112905491	Dueno	3146421170	colinas	1992-03-22	CC
 \.
 
 
@@ -939,7 +933,7 @@ COPY viao_persona (documento, tipo_documento, nombre, apellidos, telefono, direc
 -- Data for Name: viao_trabajador; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY viao_trabajador (id, perfil, documento_id, jefe_id) FROM stdin;
+COPY viao_trabajador (id, documento_id, jefe_id) FROM stdin;
 \.
 
 
@@ -1087,6 +1081,14 @@ ALTER TABLE ONLY django_session
 
 
 --
+-- Name: viao_cultivo_jefe_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY viao_cultivo
+    ADD CONSTRAINT viao_cultivo_jefe_id_key UNIQUE (jefe_id);
+
+
+--
 -- Name: viao_cultivo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -1124,6 +1126,14 @@ ALTER TABLE ONLY viao_lote
 
 ALTER TABLE ONLY viao_persona
     ADD CONSTRAINT viao_persona_pkey PRIMARY KEY (documento);
+
+
+--
+-- Name: viao_persona_user_ptr_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY viao_persona
+    ADD CONSTRAINT viao_persona_user_ptr_id_key UNIQUE (user_ptr_id);
 
 
 --
@@ -1230,13 +1240,6 @@ CREATE INDEX django_session_session_key_461cfeaa630ca218_like ON django_session 
 --
 
 CREATE INDEX viao_cultivo_a8aeee44 ON viao_cultivo USING btree (dueno_id);
-
-
---
--- Name: viao_cultivo_bac5e582; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE INDEX viao_cultivo_bac5e582 ON viao_cultivo USING btree (jefe_id);
 
 
 --
@@ -1428,6 +1431,14 @@ ALTER TABLE ONLY viao_lote
 
 ALTER TABLE ONLY viao_lote
     ADD CONSTRAINT viao_lote_trabajador_id_5f8857da34b96f85_fk_viao_trabajador_id FOREIGN KEY (trabajador_id) REFERENCES viao_trabajador(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: viao_persona_user_ptr_id_5337ea5d458aba2a_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY viao_persona
+    ADD CONSTRAINT viao_persona_user_ptr_id_5337ea5d458aba2a_fk_auth_user_id FOREIGN KEY (user_ptr_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

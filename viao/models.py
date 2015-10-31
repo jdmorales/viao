@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class Persona(User):
-	TIPO_DOCUMENTO=(('CC','Cedula Ciudadania'),('CE','Cedula Extrangera'))
+	TIPO_DOCUMENTO=(('CC','Cedula Ciudadania'),('CE','Cedula Extranjera'))
 	documento=models.CharField(max_length=20,primary_key=True)
 	tipo_documento=models.CharField(max_length=20,choices=TIPO_DOCUMENTO)
 	tipo_usuario=models.CharField(max_length=20)
@@ -28,6 +28,7 @@ class Dueno(models.Model):
 class Jefe(models.Model):
 	documento=models.OneToOneField(Persona,primary_key=True)
 	dueno=models.ForeignKey(Dueno)
+	asignado=models.BooleanField()
 	def __str__(self):
 		return '%s'%(self.documento.first_name)
 
@@ -40,7 +41,8 @@ class Trabajador(models.Model):
 class Cultivo(models.Model):
 	
 	dueno=models.ForeignKey(Dueno)
-	area=models.IntegerField()
+	area=models.PositiveIntegerField()
+	lotes=models.PositiveIntegerField()
 	tipoMedida=models.CharField(max_length=3)
 	fechaRegsitro=models.DateField()
 	jefe=models.OneToOneField(Jefe)

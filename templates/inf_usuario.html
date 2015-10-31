@@ -5,16 +5,40 @@
 <h1 align="center">Informacion de perfil</h1><br>
 <div class="container jumbotron">
 
-  <label>Nombre: {{ user.first_name }} {{user.last_name}} </label><br>
-  <label>Documento: {{ user.documento }}</label><br>
-  <label>Telefono: {{ user.telefono }}</label><br>
-  <label>Direccion: {{user.direccion }}</label><br>
-  <label>Fecha Nacimiento: {{ user.fechaNacimiento }}</label><br>
+  <label>Nombre: {{ persona.first_name }} {{persona.last_name}} </label><br>
+  <label>Documento: {{ persona.documento }}</label><br>
+  <label>Telefono: {{ persona.telefono }}</label><br>
+  <label>Direccion: {{persona.direccion }}</label><br>
+  <label>Fecha Nacimiento: {{ persona.fechaNacimiento }}</label><br>
+  <label>Perfil: {{ persona.tipo_usuario }}</label><br>
 </div>
 <br>
 <div class="container">
+{% if persona.is_superuser %}
+<h1>Tabla Dueños</h1>
 <table class="table table-hover">
-  {% if user.tipo_usuario == 'Dueno' %}
+  
+    <thead>
+      <tr>
+        <th>Documento</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+        {% for duenos in asignaciones %}
+          <tr>
+           <td>{{duenos.documento}}</td>
+            <td>{{duenos.first_name}}</td>
+            <td>{{duenos.last_name}}</td>
+        </tr>
+      {% endfor %} 
+    </tbody>
+  {% endif %}
+  {% if persona.tipo_usuario == 'Dueno' %}
+  <h1>Tabla Cultivos</h1>
+<table class="table table-hover">
     <thead>
       <tr>
         <th>Id</th>
@@ -30,8 +54,10 @@
         </tr>
       {% endfor %} 
     </tbody>
-    {% endif %}
-    {% if user.tipo_usuario == 'Jefe' %}
+  {% endif %}
+    {% if persona.tipo_usuario == 'Jefe' %}
+    <h1>Tabla Trabajadores</h1>
+<table class="table table-hover">
     <thead>
       <tr>
         <th>Documento</th>
@@ -50,7 +76,9 @@
       {% endfor %} 
     </tbody>
     {% endif %} 
-    {% if user.tipo_usuario == 'Trabajador' %}
+    {% if persona.tipo_usuario == 'Trabajador' %}
+    <h1>Tabla Lotes</h1>
+<table class="table table-hover">
     <thead>
       <tr>
         <th>Id</th>

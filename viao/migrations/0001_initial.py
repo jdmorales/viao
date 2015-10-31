@@ -17,7 +17,8 @@ class Migration(migrations.Migration):
             name='Cultivo',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('area', models.IntegerField()),
+                ('area', models.PositiveIntegerField()),
+                ('lotes', models.PositiveIntegerField()),
                 ('tipoMedida', models.CharField(max_length=3)),
                 ('fechaRegsitro', models.DateField()),
             ],
@@ -64,6 +65,7 @@ class Migration(migrations.Migration):
             name='Jefe',
             fields=[
                 ('documento', models.OneToOneField(primary_key=True, serialize=False, to='viao.Persona')),
+                ('asignado', models.BooleanField()),
                 ('dueno', models.ForeignKey(to='viao.Dueno')),
             ],
         ),

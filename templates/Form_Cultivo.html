@@ -1,24 +1,33 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block title %}Crear Cultivo{% endblock %}
-{% block content %}
-    <form action="" method="POST">{% csrf_token %}
-    	{{form.area.errors}}
-		<label>Área:</label>
-	    {{form.area}}
-	    <br>
-	    {{form.lotes.errors}}
-		<label>Cantidad de lotes:</label>
-	    {{form.lotes}}
-	    <br>
-	    {{form.jefe.errors}}
-	    <label>Jefe:</label>
-	    <select name="jefe">
-	    	<option>Elige un Jefe</option>
-			{% for jefe in jefes %}	
-	    		<option value="{{jefe.documento}}" >{{jefe.documento.first_name}}</option>
-			{% endfor %}
-	    </select><br><br>
-	    
-	    <input name='save' type="submit" value="Guardar"/>
-    </form>
+{% block js%}
+<script src = "{% static "viao/js/crearCultivo.js" %}" ></script>
 {% endblock %}
+
+{% block content %}
+<div class ="container">
+	<h1 align="center">Crear Cultivo</h1><br>
+    <form class="form-cultivo" role="form" id="form-cultivo" name="form-cultivo" action="" method="POST">{% csrf_token %}
+	 	<div class="row">
+	    		<p>{{form.area}}</p>
+		</div>
+	    <div class="row">
+			<p>{{form.lotes}}</p>
+		</div>
+		<div class="row">
+			    <p><select class="form-control input-lg" id="jefe" name="jefe">
+			    	<option>Elige un Jefe</option>
+					{% for jefe in jefes %}	
+			    		<option value="{{jefe.documento}}" >{{jefe.documento.first_name}}</option>
+					{% endfor %}
+			    </select></p>
+		</div>
+	    <div class="row">
+	    	
+	    		<input class= "btn btn-primary btn-lg btn-block" id='crearCultivo' type="button" value="Crear"/>
+	    	
+	    </div>
+    </form>
+ </div>
+{% endblock %}  
