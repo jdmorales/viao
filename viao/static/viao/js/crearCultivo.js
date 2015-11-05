@@ -65,7 +65,7 @@ function writeError(obj,message) {
 };
             
 function removeError(){
-    //this.className = this.className.substring(0,this.className.lastIndexOf(' '));
+   //this.className = this.className.substring(0,this.className.lastIndexOf(' '));
     this.parentNode.removeChild(this.hasError);
     this.hasError = null;
     this.onchange = null;

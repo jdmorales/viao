@@ -16,27 +16,30 @@ class Persona(User):
 	#passw=models.CharField(max_length=20)
 	#fechaRegistro=models.DateField(default=date.today())
 	fechaNacimiento=models.DateField(null=True)
+	
 
 
 
 class Dueno(models.Model):
-	documento=models.OneToOneField(Persona,primary_key=True)
+	documento=models.OneToOneField(Persona,primary_key=True,on_delete=models.CASCADE)
+	activo=models.BooleanField(default=True)
 	def __str__(self):
-		return ' %s'%(self.documento.first_name)
-
+		return '%s %s'%(self.documento.first_name, self.documento.last_name)
 
 class Jefe(models.Model):
-	documento=models.OneToOneField(Persona,primary_key=True)
-	dueno=models.ForeignKey(Dueno)
+	documento=models.OneToOneField(Persona,primary_key=True,on_delete=models.CASCADE)
+	dueno=models.ForeignKey(Dueno,blank=True, null=True,on_delete=models.SET_NULL)
 	asignado=models.BooleanField()
+	activo=models.BooleanField(default=True)
 	def __str__(self):
-		return '%s'%(self.documento.first_name)
+		return '%s %s'%(self.documento.first_name, self.documento.last_name)
 
 class Trabajador(models.Model):
-	documento=models.OneToOneField(Persona,primary_key=True)
-	jefe=models.ForeignKey(Jefe)
+	documento=models.OneToOneField(Persona,primary_key=True,on_delete=models.CASCADE)
+	jefe=models.ForeignKey(Jefe,blank=True, null=True,on_delete=models.SET_NULL)
+	activo=models.BooleanField(default=True)
 	def __str__(self):
-		return '%s'%(self.documento.first_name)
+		return '%s %s'%(self.documento.first_name, self.documento.last_name)
 
 class Cultivo(models.Model):
 	
@@ -45,7 +48,8 @@ class Cultivo(models.Model):
 	lotes=models.PositiveIntegerField()
 	tipoMedida=models.CharField(max_length=3)
 	fechaRegsitro=models.DateField()
-	jefe=models.OneToOneField(Jefe)
+	jefe=models.OneToOneField(Jefe,blank=True, null=True,on_delete=models.SET_NULL)
+	activo=models.BooleanField(default=True)
 	def __str__(self):
 		return '%s %s'%(self.dueno.documento.first_name,self.jefe.documento.first_name)
 
@@ -55,6 +59,7 @@ class Lote(models.Model):
 	tipoMedida=models.CharField(max_length=3)
 	totalEstacas=models.IntegerField()
 	fechaRegsitro=models.DateField()
-	trabajador=models.ForeignKey(Trabajador)
+	trabajador=models.ForeignKey(Trabajador,blank=True, null=True,on_delete=models.SET_NULL)
+	activo=models.BooleanField(default=True)
 	def __str__(self):
 		return '%s %s'%(self.cultivo.dueno.documento.first_name,self.trabajador.documento.first_name)

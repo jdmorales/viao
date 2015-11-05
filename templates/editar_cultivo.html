@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block title %}Crear Cultivo{% endblock %}
+{% block title %}Viao{% endblock %}
 {% block js%}
-<script src = "{% static "viao/js/crearCultivo.js" %}" ></script>
+<script src = "{% static "viao/js/EditarCultivo.js" %}" ></script>
 {% endblock %}
 
 {% block content %}
 <div class ="container">
-	<h1 align="center">Crear Cultivo</h1><br>
+	<h1 align="center">Editar Cultivo</h1><br>
     <form class="form-cultivo" role="form" id="form-cultivo" name="form-cultivo" action="" method="POST">{% csrf_token %}
 	 	<div class="row">
     		
@@ -34,7 +34,7 @@
 		</div>
 	    <div class="row">
 	    	
-	    		<input class= "btn btn-primary btn-lg btn-block" id='crearCultivo' type="button" value="Crear"/>
+	    		<input class= "btn btn-primary btn-lg btn-block" id='editarCultivo' type="submit" value="Crear"/>
 	    	
 	    </div>
     </form>

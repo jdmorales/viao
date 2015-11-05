@@ -30,21 +30,32 @@
             <div id="navbar-collapse" class="collapse navbar-collapse" >
             {% if user.is_authenticated %}
                 <ul class="nav navbar-nav">
-                    <li ><a href="/crear/personas">Registrar 
-                    {% if user.tipo_usuario == 'Dueno'%}
-                            Jefe
-                    {% endif %}
-                    {% if user.tipo_usuario == 'Jefe'%}
-                            Trabajador
-                    {% endif %}
-                    {% if user.is_superuser %}
-                            Dueño
-                    {% endif %}</a></li>
+                    {% if user.tipo_usuario != 'Trabajador'%}
                     
+                        <li ><a href="/crear/personas">Registrar 
+                        {% if user.tipo_usuario == 'Dueno'%}
+                                Jefe
+                        {% endif %}
+                        {% if user.tipo_usuario == 'Jefe'%}
+                                Trabajador
+                        {% endif %}
+                        {% if user.is_superuser %}
+                                Dueño
+                        {% endif %}</a></li>
+                    {% endif %}
                     {% if user.tipo_usuario == 'Dueno' %}
                         <li><a href="/cultivo">Registrar Cultivo</a></li>
                     {% endif %}
-                    <li><a href="/personas">Lista de Personas</a></li>
+                    <li><a href="/personas">Lista de 
+                        {% if user.tipo_usuario == 'Dueno'%}
+                                Jefes
+                        {% endif %}
+                        {% if user.tipo_usuario == 'Jefe'%}
+                                Trabajadores
+                        {% endif %}
+                        {% if user.is_superuser %}
+                                Dueños
+                        {% endif %}</a></li>
                     
                 </ul>
              {%endif%}
@@ -52,7 +63,7 @@
                     <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><span class="glyphicon glyphicon-user"></span>
                     {% if user.is_authenticated %}
-                        {{ user.first_name }}
+                        {{ user.first_name }} {{ user.last_name }}
                     {%else%}
                         Not logged in
                     {%endif%}

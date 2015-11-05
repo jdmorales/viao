@@ -2,8 +2,9 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-from django.conf import settings
 import django.contrib.auth.models
+import django.db.models.deletion
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
@@ -21,6 +22,7 @@ class Migration(migrations.Migration):
                 ('lotes', models.PositiveIntegerField()),
                 ('tipoMedida', models.CharField(max_length=3)),
                 ('fechaRegsitro', models.DateField()),
+                ('activo', models.BooleanField(default=True)),
             ],
         ),
         migrations.CreateModel(
@@ -31,6 +33,7 @@ class Migration(migrations.Migration):
                 ('tipoMedida', models.CharField(max_length=3)),
                 ('totalEstacas', models.IntegerField()),
                 ('fechaRegsitro', models.DateField()),
+                ('activo', models.BooleanField(default=True)),
                 ('cultivo', models.ForeignKey(to='viao.Cultivo')),
             ],
         ),
@@ -59,6 +62,7 @@ class Migration(migrations.Migration):
             name='Dueno',
             fields=[
                 ('documento', models.OneToOneField(primary_key=True, serialize=False, to='viao.Persona')),
+                ('activo', models.BooleanField(default=True)),
             ],
         ),
         migrations.CreateModel(
@@ -66,20 +70,22 @@ class Migration(migrations.Migration):
             fields=[
                 ('documento', models.OneToOneField(primary_key=True, serialize=False, to='viao.Persona')),
                 ('asignado', models.BooleanField()),
-                ('dueno', models.ForeignKey(to='viao.Dueno')),
+                ('activo', models.BooleanField(default=True)),
+                ('dueno', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, blank=True, to='viao.Dueno', null=True)),
             ],
         ),
         migrations.CreateModel(
             name='Trabajador',
             fields=[
                 ('documento', models.OneToOneField(primary_key=True, serialize=False, to='viao.Persona')),
-                ('jefe', models.ForeignKey(to='viao.Jefe')),
+                ('activo', models.BooleanField(default=True)),
+                ('jefe', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, blank=True, to='viao.Jefe', null=True)),
             ],
         ),
         migrations.AddField(
             model_name='lote',
             name='trabajador',
-            field=models.ForeignKey(to='viao.Trabajador'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, blank=True, to='viao.Trabajador', null=True),
         ),
         migrations.AddField(
             model_name='cultivo',
@@ -89,6 +95,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='cultivo',
             name='jefe',
-            field=models.OneToOneField(to='viao.Jefe'),
+            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.SET_NULL, blank=True, to='viao.Jefe'),
         ),
     ]

@@ -41,7 +41,12 @@ function validate(msn) {
 		writeError(x['documento'],'Documento No valido');
 	if (msn)
 		writeError(x['documento'],'Documento ya existe');
-
+	if (!x['password'].value.match('(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,20})$'))
+		writeError(x['password'],'minimo 8 caracteres, 1 mayuscula, 1 digito');
+	if (!x['first_name'].value.match('^[a-zA-Z \s*]*$'))
+		writeError(x['first_name'],'nombre no valido');
+	if (!x['last_name'].value.match('^[a-zA-Z \s*]*$'))
+		writeError(x['last_name'],'apellido no valido');
 	if (!W3CDOM)
 		alert(errorstring);
 	if (firstError)

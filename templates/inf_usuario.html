@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Personas{% endblock %}
 {% block content %}
-
 <h1 align="center">Informacion de perfil</h1><br>
 <div class="container jumbotron">
 
@@ -11,19 +10,21 @@
   <label>Direccion: {{persona.direccion }}</label><br>
   <label>Fecha Nacimiento: {{ persona.fechaNacimiento }}</label><br>
   <label>Perfil: {{ persona.tipo_usuario }}</label><br>
+  <label>Correo: {{ persona.email }}</label><br>
 </div>
 <br>
+<form method="GET">
 <div class="container">
-{% if persona.is_superuser %}
-<h1>Tabla Dueños</h1>
-<table class="table table-hover">
-  
+
+  {% if persona.is_superuser %}
+  <h1>Tabla Dueños</h1>
+  <table class="table table-hover">
     <thead>
       <tr>
         <th>Documento</th>
         <th>Nombre</th>
         <th>Apellidos</th>
-      
+        <th></th></th>
       </tr>
     </thead>
     <tbody>
@@ -32,18 +33,22 @@
            <td>{{duenos.documento}}</td>
             <td>{{duenos.first_name}}</td>
             <td>{{duenos.last_name}}</td>
+            <td>
+            <input type="submit" formaction="../{{duenos.documento}}" class= "btn-primary btn-sm" id ="informacion" value="Datos"/>
+            <input type="submit" formaction="/editar/usuario/{{persona.documento}}"class= "btn-success btn-sm" id ="editar" value="Editar"/>
+            <input type="submit" formaction="/eliminar/usuario/{{persona.documento}}" class= "btn-danger btn-sm" id ="eliminar" value="Eliminar"/></td>
         </tr>
       {% endfor %} 
     </tbody>
   {% endif %}
   {% if persona.tipo_usuario == 'Dueno' %}
-  <h1>Tabla Cultivos</h1>
-<table class="table table-hover">
+    <h1>Tabla Cultivos</h1>
+    <table class="table table-hover">
     <thead>
       <tr>
         <th>Id</th>
         <th>Encargado</th>
-      
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -51,19 +56,24 @@
           <tr>
             <td>{{cultivo.id}} </td>
             <td>{{cultivo.jefe}}</td>
+
+            <td>
+            <input type="submit" formaction="/informacion/cultivo/{{cultivo.id}}" class= "btn-primary btn-sm" id ="informacion" value="Datos"/>
+            <input type="submit" formaction="/editar/cultivo/{{cultivo.id}}"class= "btn-success btn-sm" id ="editar" value="Editar"/>
+            <input type="submit" formaction="/eliminar/cultivo/{{cultivo.id}}" class= "btn-danger btn-sm" id ="eliminar" value="Eliminar"/></td>
         </tr>
       {% endfor %} 
     </tbody>
   {% endif %}
     {% if persona.tipo_usuario == 'Jefe' %}
     <h1>Tabla Trabajadores</h1>
-<table class="table table-hover">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th>Documento</th>
         <th>Nombre</th>
         <th>Apellidos</th>
-      
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -72,18 +82,22 @@
             <td>{{trabajador.documento}}</td>
             <td>{{trabajador.documento.first_name}}</td>
             <td>{{trabajador.documento.last_name}}</td>
+            <td>
+            <input type="submit" formaction="../{{trabajador.documento}}" class= "btn-primary btn-sm" id ="informacion" value="Datos"/>
+            <input type="submit" formaction="/editar/usuario/{{trabajador.documento}}"class= "btn-success btn-sm" id ="editar" value="Editar"/>
+            <input type="submit" formaction="/eliminar/usuario/{{trabajador.documento}}" class= "btn-danger btn-sm" id ="eliminar" value="Eliminar"/></td>
         </tr>
       {% endfor %} 
     </tbody>
     {% endif %} 
     {% if persona.tipo_usuario == 'Trabajador' %}
     <h1>Tabla Lotes</h1>
-<table class="table table-hover">
+    <table class="table table-hover">
     <thead>
       <tr>
         <th>Id</th>
         <th>Fecha en que se registro</th>
-      
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -91,11 +105,16 @@
           <tr>
             <td>{{lote.id}} </td>
             <td>{{lote.totalEstacas}}</td>
+            <td>
+            <input type="submit" formaction="../{{lote.id}}" class= "btn-primary btn-sm" id ="informacion" value="Datos"/>
+            <input type="submit" formaction="../editar/lote/{{lote.id}}"class= "btn-success btn-sm" id ="editar" value="Editar"/>
+            <input type="submit" formaction="../eliminar/lote/{{lote.id}}" class= "btn-danger btn-sm" id ="eliminar" value="Eliminar"/></td>
         </tr>
       {% endfor %} 
     </tbody>
     {% endif %} 
 </table>
+</form>
 </div>
 
 
