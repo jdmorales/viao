@@ -20,8 +20,6 @@ urlpatterns = [
     url(r'^editar/cultivo/(?P<id_cultivo>\w+)/$',editar_cultivo,name="editar_cultivo"),
     url(r'^eliminar/usuario/(?P<cedula>\w+)/$',eliminar_usuario,name="eliminar_usuario"),
     url(r'^eliminar/cultivo/(?P<id_cultivo>\w+)/$',eliminar_cultivo,name="eliminar_cultivo"),
-    
-   
 ]
 
 
