@@ -15,7 +15,6 @@ urlpatterns = [
     url(r'^inicio/$',inicio, name='inicio'),
     url(r'^informacion/usuario/(?P<cedula>\w+)/$',inf_user,name="informacion"),
     url(r'^editar/usuario/(?P<cedula>\w+)/$',editar,name="editar_usuario"),
-   
 ]
 
 
