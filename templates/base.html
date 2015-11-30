@@ -5,99 +5,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="shortcut icon" href="{% static "viao/images/img1.jpg"%}"type="images/jpg" >
-    <link href="{% static "viao/css/tabla1.css"%}"rel="stylesheet" type="text/css">
-    <link href="{% static "viao/css/principal.css"%}" rel="stylesheet" type="text/css">
-    <link href="{% static "viao/plugins/bootstrap/css/bootstrap.min.css"%}"  rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="Frontend/resources/images/viao_logo.jpg" type="images/jpg">
+    <link href="Frontend/css/tabla1.css" rel="stylesheet" type="text/css">
+    <link href="Frontend/css/principal.css" rel="stylesheet" type="text/css">
+    <link href="Frontend/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 </head>
 
-<body >
-
-    
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button  class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button  class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                 <span class="sronly"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-              </button>
-                
-                <a href="/inicio"><img alt="Brand"   src="{% static "viao/images/img1.jpg"%}"  width="50em" height="50em"></a>
-                
-            </div>   
-            <div id="navbar-collapse" class="collapse navbar-collapse" >
+            </button>
+
+            <a href="/inicio"><img alt="Brand"   src="Frontend/resources/images/viao_logo.jpg"  width="50em" height="50em"></a>
+
+        </div>
+        <div id="navbar-collapse" class="collapse navbar-collapse">
             {% if user.is_authenticated %}
                 <ul class="nav navbar-nav">
                     {% if user.tipo_usuario != 'Trabajador'%}
-                    
-                        <li ><a href="/crear/personas">Registrar 
-                        {% if user.tipo_usuario == 'Dueno'%}
+
+                        <li ><a href="/crear/personas">Registrar
+                            {% if user.tipo_usuario == 'Dueno'%}
                                 Jefe
-                        {% endif %}
-                        {% if user.tipo_usuario == 'Jefe'%}
+                            {% endif %}
+                            {% if user.tipo_usuario == 'Jefe'%}
                                 Trabajador
-                        {% endif %}
-                        {% if user.is_superuser %}
+                            {% endif %}
+                            {% if user.is_superuser %}
                                 Dueño
-                        {% endif %}</a></li>
+                            {% endif %}</a></li>
                     {% endif %}
                     {% if user.tipo_usuario == 'Dueno' %}
                         <li><a href="/cultivo">Registrar Cultivo</a></li>
                     {% endif %}
-                    <li><a href="/personas">Lista de 
+                    <li><a href="/personas">Lista de
                         {% if user.tipo_usuario == 'Dueno'%}
-                                Jefes
+                            Jefes
                         {% endif %}
                         {% if user.tipo_usuario == 'Jefe'%}
-                                Trabajadores
+                            Trabajadores
                         {% endif %}
                         {% if user.is_superuser %}
-                                Dueños
+                            Dueños
                         {% endif %}</a></li>
-                    
+
                 </ul>
-             {%endif%}
-                <ul class="nav navbar-nav navbar-right " style="position absolute">
-                    <li class="dropdown">
+            {%endif%}
+            <ul class="nav navbar-nav navbar-right " style="position absolute">
+                <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><span class="glyphicon glyphicon-user"></span>
-                    {% if user.is_authenticated %}
-                        {{ user.first_name }} {{ user.last_name }}
-                    {%else%}
-                        Not logged in
-                    {%endif%}
-                    <span class="glyphicon glyphicon-chevron-down"></span></a>
-                        <ul class="dropdown-menu">
-                         {% if user.is_authenticated %}
+                        {% if user.is_authenticated %}
+                            {{ user.first_name }} {{ user.last_name }}
+                        {%else%}
+                            Not logged in
+                        {%endif%}
+                        <span class="glyphicon glyphicon-chevron-down"></span></a>
+                    <ul class="dropdown-menu">
+                        {% if user.is_authenticated %}
                             <li><a>Perfil: {{ user.tipo_usuario}}</a></li>
                             {% if not user.is_superuser %}
-                            <li><a href="/informacion/usuario/{{user.documento}}/">Informacion</a></li>
+                                <li><a href="/informacion/usuario/{{user.documento}}/">Informacion</a></li>
                             {% endif %}
                             <li><a href="/cerrar"><span class="glyphicon glyphicon-log-out"></span>Cerrar sesion</a>
                             </li>
-                         {%else%}
+                        {%else%}
                             <li><a href="/">Login</a>
                             </li>
-                         {%endif%}
-                                                   
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    
-   
-    {%  block content %}{% endblock %}
-        
-    
+                        {%endif%}
 
-     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="{% static "viao/plugins/jquery/jquery.js" %}"  type="text/javascript"><\/script>')</script>
-    <script src="{% static "viao/plugins/bootstrap/js/bootstrap.min.js" %}"></script>
-    
-    {% block js%}{% endblock%}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+{%  block content %}{% endblock %}
+
+
+
+<script type="text/javascript" src="Frontend/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="Frontend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+{% block js%}{% endblock%}
 
 </body>
 
