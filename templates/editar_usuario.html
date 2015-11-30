@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Crear Persona{% endblock %}
+{% block js%}
+<script src = "{% static "viao/js/editarUsuario.js" %}" ></script> 
+{% endblock%}
+{% block content %}
+	<div  class ="container">
+	<h1 align="center">Editar Usuario {{tipo_usuario}}</h1><br>
+	<br>
+	    <form  class="form-horizontal" role="form" action="" method="POST">{% csrf_token %}
+		    
+			<div   class="row">
+			  
+			    <label class="control-label col-sm-5">Nombre:</label>
+			    <div class="col-sm-4">
+			    	{{ form.first_name }}
+			    </div>
+			</div>
+			<div class="row">
+			    
+			    <label class="control-label col-sm-5">Apellido:</label>
+			    <div class="col-sm-4">	
+			    	{{ form.last_name }}
+			    </div>
+			</div>
+			<div class="row">
+			    
+			    <label class="control-label col-sm-5">Fecha Nacimiento:</label>
+			    <div class="col-sm-4">
+			    	{{ form.fechaNacimiento }}
+			    </div>
+			</div>
+			<div class="row">
+			  
+			    <label class="control-label col-sm-5">Telefono:</label>
+			    <div class="col-sm-4">
+			    	{{ form.telefono }}
+			     </div>
+			</div>
+			<div class="row">  
+			    <label class="control-label col-sm-5">Direccion:</label>
+			    <div class="col-sm-4">	
+			    	{{ form.direccion }}
+			    </div>
+			</div>
+			<div class="row">   
+			    <label class="control-label col-sm-5">Email:</label>
+			    <div class="col-sm-4">
+			    	{{ form.email }}
+			    </div>
+			</div>
+		    <div align="center"class="row">
+		    	<div class="control-label col-sm-7">	
+		    		<input class= "btn-primary btn-lg" id ="editarusuario" type="submit" value="Editar"/>
+			    </div>
+		    </div>
+		    <div class="row">
+				<div class=" control-label col-sm-8" id="recharge"></div>
+			</div>
+	    </form>
+	    
+	    
+	</div>
+	
+	
+ 
+{% endblock %}
