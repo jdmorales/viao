@@ -2,41 +2,32 @@
 {% load staticfiles %}
 {% block title %}Viao{% endblock %}
 {% block js%}
-<script src = "{% static "viao/js/EditarCultivo.js" %}" ></script>
+    <script src = "{% static "viao/js/EditarCultivo.js" %}" ></script>
 {% endblock %}
 
 {% block content %}
-<div class ="container">
-	<h1 align="center">Editar Cultivo</h1><br>
-    <form class="form-cultivo" role="form" id="form-cultivo" name="form-cultivo" action="" method="POST">{% csrf_token %}
-	 	<div class="row">
-    		
-			
-	    		<p>{{form.area}}</p>
-	    	
-		</div>
-	    <div class="row">
-    		
-			
-	    		<p>{{form.lotes}}</p>
-	    	
-		</div>
-		<div class="row">
-	   
-		   
-			    <p><select class="form-control input-lg" id="jefe" name="jefe">
-			    	<option>Elige un Jefe</option>
-					{% for jefe in jefes %}	
-			    		<option value="{{jefe.documento}}" >{{jefe.documento.first_name}} {{jefe.documento.last_name}}</option>
-					{% endfor %}
-			    </select></p>
-			
-		</div>
-	    <div class="row">
-	    	
-	    		<input class= "btn btn-primary btn-lg btn-block" id='editarCultivo' type="submit" value="Crear"/>
-	    	
-	    </div>
-    </form>
- </div>
+    <div class ="container">
+        <h1 align="center">Editar Cultivo</h1><br>
+        <form class="form-cultivo" role="form" id="form-cultivo" name="form-cultivo" action="" method="POST">{% csrf_token %}
+            <div class="row">
+                <p>{{form.area}}</p>
+            </div>
+            <div class="row">
+                <p>{{form.lotes}}</p>
+            </div>
+            <div class="row">
+                <p>
+                    <select class="form-control input-lg" id="jefe" name="jefe">
+                        <option>Elige un Jefe</option>
+                        {% for jefe in jefes %}
+                            <option value="{{jefe.documento}}" >{{jefe.documento.first_name}} {{jefe.documento.last_name}}</option>
+                        {% endfor %}
+                    </select>
+                </p>
+            </div>
+            <div class="row">
+                <input class= "btn btn-primary btn-lg btn-block" id='editarCultivo' type="submit" value="Crear"/>
+            </div>
+        </form>
+    </div>
 {% endblock %}  

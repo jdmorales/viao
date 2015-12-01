@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="shortcut icon" href="Frontend/resources/images/viao_logo.jpg" type="images/jpg">
-    <link href="Frontend/css/tabla1.css" rel="stylesheet" type="text/css">
-    <link href="Frontend/css/principal.css" rel="stylesheet" type="text/css">
-    <link href="Frontend/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="/Frontend/resources/images/viao_logo.jpg" type="images/jpg">
+    <link href="/Frontend/css/tabla1.css" rel="stylesheet" type="text/css">
+    <link href="/Frontend/css/principal.css" rel="stylesheet" type="text/css">
+    <link href="/Frontend/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -22,7 +22,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a href="/inicio"><img alt="Brand"   src="Frontend/resources/images/viao_logo.jpg"  width="50em" height="50em"></a>
+            <a href="/inicio"><img alt="Brand"   src="/Frontend/resources/images/viao_logo.jpg"  width="50em" height="50em"></a>
 
         </div>
         <div id="navbar-collapse" class="collapse navbar-collapse">
@@ -57,7 +57,7 @@
 
                 </ul>
             {%endif%}
-            <ul class="nav navbar-nav navbar-right " style="position absolute">
+            <ul class="nav navbar-nav navbar-right ">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><span class="glyphicon glyphicon-user"></span>
                         {% if user.is_authenticated %}
@@ -91,8 +91,8 @@
 
 
 
-<script type="text/javascript" src="Frontend/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="Frontend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/Frontend/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/Frontend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 {% block js%}{% endblock%}
 
