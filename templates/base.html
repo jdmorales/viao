@@ -1,6 +1,6 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="ngAppViao">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,93 +9,52 @@
     <link href="/Frontend/css/tabla1.css" rel="stylesheet" type="text/css">
     <link href="/Frontend/css/principal.css" rel="stylesheet" type="text/css">
     <link href="/Frontend/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/Frontend/bower_components/angular-material/angular-material.min.css" rel="stylesheet" type="text/css">
+    <link href="/Frontend/bower_components/angular-material/angular-material.layouts.min.css" rel="stylesheet" type="text/css">
+
+    <script src="/Frontend/bower_components/angular/angular.min.js"></script>
+    <script src="/Frontend/bower_components/angular-material/angular-material.min.js"></script>
+    <script src="/Frontend/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="/Frontend/bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="/Frontend/js/src/appViao.js"></script>
+
 </head>
 
+
+
+
+
 <body>
-<nav class="navbar navbar-default navbar-static-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button  class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                <span class="sronly"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+<div ng-controller="AppCtrl" layout="column" style="height:500px;" ng-cloak="" class="sidenavdemoBasicUsage">
 
-            <a href="/inicio"><img alt="Brand"   src="/Frontend/resources/images/viao_logo.jpg"  width="50em" height="50em"></a>
-
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Settings">
+                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+            </md-button>
+            <h2>
+                <span>Toolbar with Icon Buttons</span>
+            </h2>
+            <span flex=""></span>
+            <md-button class="md-icon-button" aria-label="Favorite">
+                <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="More">
+                <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+            </md-button>
         </div>
-        <div id="navbar-collapse" class="collapse navbar-collapse">
-            {% if user.is_authenticated %}
-                <ul class="nav navbar-nav">
-                    {% if user.tipo_usuario != 'Trabajador'%}
+    </md-toolbar>
+    <md-content style="background: red">
+        {%  block content %}{% endblock %}
+    </md-content>
 
-                        <li ><a href="/crear/personas">Registrar
-                            {% if user.tipo_usuario == 'Dueno'%}
-                                Jefe
-                            {% endif %}
-                            {% if user.tipo_usuario == 'Jefe'%}
-                                Trabajador
-                            {% endif %}
-                            {% if user.is_superuser %}
-                                Dueño
-                            {% endif %}</a></li>
-                    {% endif %}
-                    {% if user.tipo_usuario == 'Dueno' %}
-                        <li><a href="/cultivo">Registrar Cultivo</a></li>
-                    {% endif %}
-                    <li><a href="/personas">Lista de
-                        {% if user.tipo_usuario == 'Dueno'%}
-                            Jefes
-                        {% endif %}
-                        {% if user.tipo_usuario == 'Jefe'%}
-                            Trabajadores
-                        {% endif %}
-                        {% if user.is_superuser %}
-                            Dueños
-                        {% endif %}</a></li>
-
-                </ul>
-            {%endif%}
-            <ul class="nav navbar-nav navbar-right ">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><span class="glyphicon glyphicon-user"></span>
-                        {% if user.is_authenticated %}
-                            {{ user.first_name }} {{ user.last_name }}
-                        {%else%}
-                            Not logged in
-                        {%endif%}
-                        <span class="glyphicon glyphicon-chevron-down"></span></a>
-                    <ul class="dropdown-menu">
-                        {% if user.is_authenticated %}
-                            <li><a>Perfil: {{ user.tipo_usuario}}</a></li>
-                            {% if not user.is_superuser %}
-                                <li><a href="/informacion/usuario/{{user.documento}}/">Informacion</a></li>
-                            {% endif %}
-                            <li><a href="/cerrar"><span class="glyphicon glyphicon-log-out"></span>Cerrar sesion</a>
-                            </li>
-                        {%else%}
-                            <li><a href="/">Login</a>
-                            </li>
-                        {%endif%}
-
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-
-{%  block content %}{% endblock %}
-
-
+</div>
 
 <script type="text/javascript" src="/Frontend/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/Frontend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-{% block js%}{% endblock%}
 
+{% block js%}{% endblock%}
 </body>
 
 </html>
