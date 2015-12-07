@@ -11,50 +11,46 @@
     <link href="/Frontend/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/Frontend/bower_components/angular-material/angular-material.min.css" rel="stylesheet" type="text/css">
     <link href="/Frontend/bower_components/angular-material/angular-material.layouts.min.css" rel="stylesheet" type="text/css">
+    <link href="/Frontend/bower_components/angular-material-icons/angular-material-icons.css" rel="stylesheet" type="text/css">
+
+    <link href="/Frontend/css/stylesheets/main_style.css" rel="stylesheet" type="text/css">
 
     <script src="/Frontend/bower_components/angular/angular.min.js"></script>
     <script src="/Frontend/bower_components/angular-material/angular-material.min.js"></script>
+    <script src="/Frontend/bower_components/angular-material-icons/angular-material-icons.min.js"></script>
+
     <script src="/Frontend/bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="/Frontend/bower_components/angular-aria/angular-aria.min.js"></script>
     <script src="/Frontend/js/src/appViao.js"></script>
-
 </head>
 
-
-
-
-
-<body>
-<div ng-controller="AppCtrl" layout="column" style="height:500px;" ng-cloak="" class="sidenavdemoBasicUsage">
-
-    <md-toolbar>
-        <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" aria-label="Settings">
-                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-            </md-button>
-            <h2>
-                <span>Toolbar with Icon Buttons</span>
-            </h2>
-            <span flex=""></span>
-            <md-button class="md-icon-button" aria-label="Favorite">
-                <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
-            </md-button>
-            <md-button class="md-icon-button" aria-label="More">
-                <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
-            </md-button>
-        </div>
-    </md-toolbar>
-    <md-content style="background: red">
-        {%  block content %}{% endblock %}
-    </md-content>
-
-</div>
-
-<script type="text/javascript" src="/Frontend/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="/Frontend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-
+{% if not user.is_authenticated %}
+    <body ng-controller="AppCtrl" layout="column" ng-cloak="" class="sidenavdemoBasicUsage background-banner">
+{% else %}
+    <body ng-controller="AppCtrl" layout="column" ng-cloak="" class="sidenavdemoBasicUsage ">
+{% endif %}
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings">
+            <ng-md-icon icon="menu"></ng-md-icon>
+        </md-button>
+        <h2>
+            <span>Toolbar with Icon Buttons</span>
+        </h2>
+        <span flex=""></span>
+        <md-button class="md-icon-button" aria-label="Favorite">
+            <ng-md-icon icon="favorite"></ng-md-icon>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="More">
+            <ng-md-icon icon="more_vert"></ng-md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+<md-content class="wrapper-content">
+    {%  block content %}{% endblock %}
+</md-content>
 {% block js%}{% endblock%}
 </body>
-
+<script type="text/javascript" src="/Frontend/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/Frontend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </html>

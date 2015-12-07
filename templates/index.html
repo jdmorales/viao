@@ -2,23 +2,43 @@
 {% load staticfiles %}
 {% block content %}
 
-{% if not user.is_authenticated %} 
-<div   class="container">
-  
-       <form class="form-ingreso" rol="form"  method="POST">{% csrf_token %}
-        <h2 align="center">Por favor Ingresa</h2>
+    {% if not user.is_authenticated %}
+        <div   class="container">
 
-    		<p><input class="form-control input-lg"  type="text" placeholder="Cédula" name="username" id="usu" required autofocus></p>
-    		<p><input  class="form-control input-lg" type="password"  placeholder="Contraseña" name="password" id="pw" required>
-          	<a href="#">Olvidaste tu contraseña?</a></p>
-        
-  			<p><input  class="btn-primary btn-lg btn-block" type="submit" value="Aceptar"></p>       
-       </form>
-</div>
-{%else%}
-  <div align="center" class="container"> 
- <img   src="{% static "viao/images/viao_logo.jpg"%}"  width="50%" height="50%" alt="">
-</div>
-{% endif %}
+            <md-content class="login-form" ng-controller="ctrlFormLogin">
+                <div class="wrapper-logo">
+                    <img src="/Frontend/resources/images/viao_logo.jpg">
+                </div>
+                <div layout="colum" layout-align="center center" layout-wrap>
+                    <md-input-container flex="100">
+                        <label>Documento</label>
+                        <input type="text" ng-model="user.document">
+                    </md-input-container>
+
+                    <md-input-container flex="100">
+                        <label>Contraseña</label>
+                        <input type="password" ng-model="user.password">
+                    </md-input-container>
+
+                    <md-button class="md-raised" ng-click="send(user)">
+                        <ng-md-icon icon="done"></ng-md-icon>
+                        <label>Aceptar</label>
+                    </md-button>
+                </div>
+            </md-content>
+
+            <form ng-hide="true" class="form-ingreso" rol="form"  method="POST">{% csrf_token %}
+                <p><input class="form-control input-lg"  type="text" placeholder="Cédula" name="username" id="usu" required autofocus></p>
+                <p><input  class="form-control input-lg" type="password"  placeholder="Contraseña" name="password" id="pw" required>
+                    <a href="#">Olvidaste tu contraseña?</a></p>
+
+                <p><input  class="btn-primary btn-lg btn-block" type="submit" value="Aceptar"></p>
+            </form>
+        </div>
+    {%else%}
+        <!--div align="center" class="container">
+            <img   src="{% static "viao/images/viao_logo.jpg"%}"  width="50%" height="50%" alt="">
+        </div-->
+    {% endif %}
 
 {% endblock %}

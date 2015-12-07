@@ -1,0 +1,20 @@
+$url_base:"../../";
+$url_fonts:$url_base+"resources/fonts/";
+$url_icons:$url_base+"resources/icons/";
+$url_media_images:$url_base+"resources/images/";
+
+
+[class*="-icon"],
+.logo{
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50% 50%;
+  cursor:pointer;
+}
+
+.background-banner{
+  background-image:url($url_media_images +"img6.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 0%;
+  background-size: cover;
+}
