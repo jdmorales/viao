@@ -5,7 +5,7 @@
     {% if not user.is_authenticated %}
         <div   class="container">
 
-            <md-content class="login-form" ng-controller="ctrlFormLogin">
+            <md-content  ng-hide="false" class="login-form" ng-controller="ctrlFormLogin">
                 <div class="wrapper-logo">
                     <img src="/Frontend/resources/images/viao_logo.jpg">
                 </div>
@@ -27,6 +27,7 @@
                 </div>
             </md-content>
 
+
             <form ng-hide="true" class="form-ingreso" rol="form"  method="POST">{% csrf_token %}
                 <p><input class="form-control input-lg"  type="text" placeholder="Cédula" name="username" id="usu" required autofocus></p>
                 <p><input  class="form-control input-lg" type="password"  placeholder="Contraseña" name="password" id="pw" required>
@@ -36,9 +37,6 @@
             </form>
         </div>
     {%else%}
-        <!--div align="center" class="container">
-            <img   src="{% static "viao/images/viao_logo.jpg"%}"  width="50%" height="50%" alt="">
-        </div-->
     {% endif %}
 
 {% endblock %}

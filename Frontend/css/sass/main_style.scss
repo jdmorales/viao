@@ -11,6 +11,29 @@ body,html{
   transform: translate(-50%, -50%);
 }
 
+
+
+md-sidenav {
+  md-content {
+    a {
+      width: 100%;
+      background-color: whitesmoke;
+      font-size: 1.5em;
+      position: relative;
+      display: block;
+      color: #8BC34A;
+      PADDING: 0.5em 0.5em;
+      text-decoration: none;
+
+      &:hover{
+        color:whitesmoke;
+        background-color: #445D27;
+        text-decoration:none;
+      }
+    }
+  }
+}
+
 .wrapper-content{
   background-color:transparent !important;
   height: 100%;
@@ -20,15 +43,17 @@ body,html{
     position: relative;
 
     .form-ingreso{
-
     }
 
-    .login-form{
+
+  }
+  .login-form{
       @extend .middle;
       width: 300px;
       border-radius: 0.2em;
       padding: 1em;
       overflow: visible;
+      box-shadow: 0em 0.5em #8BC34A;
 
       .wrapper-logo{
         position: absolute;
@@ -39,5 +64,4 @@ body,html{
         }
       }
     }
-  }
 }

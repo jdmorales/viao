@@ -25,31 +25,64 @@
 </head>
 
 {% if not user.is_authenticated %}
-    <body ng-controller="AppCtrl" layout="column" ng-cloak="" class="sidenavdemoBasicUsage background-banner">
+    <body ng-controller="AppCtrl" layout="column" class="sidenavdemoBasicUsage background-banner">
 {% else %}
-    <body ng-controller="AppCtrl" layout="column" ng-cloak="" class="sidenavdemoBasicUsage ">
+    <body ng-controller="AppCtrl" layout="column" class="sidenavdemoBasicUsage ">
 {% endif %}
 <md-toolbar>
     <div class="md-toolbar-tools">
-        <md-button class="md-icon-button" aria-label="Settings">
-            <ng-md-icon icon="menu"></ng-md-icon>
-        </md-button>
+        {% if user.is_authenticated %}
+            <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()" hide-gt-md>
+                <ng-md-icon icon="menu"></ng-md-icon>
+            </md-button>
+        {% endif %}
         <h2>
-            <span>Toolbar with Icon Buttons</span>
+            <span>Viao Project</span>
         </h2>
         <span flex=""></span>
         <md-button class="md-icon-button" aria-label="Favorite">
-            <ng-md-icon icon="favorite"></ng-md-icon>
-        </md-button>
-        <md-button class="md-icon-button" aria-label="More">
-            <ng-md-icon icon="more_vert"></ng-md-icon>
+            <md-icon md-svg-icon="/Frontend/resources/images/viao_logo.jpg" ></md-icon>
         </md-button>
     </div>
 </md-toolbar>
-<md-content class="wrapper-content">
-    {%  block content %}{% endblock %}
-</md-content>
-{% block js%}{% endblock%}
+<section layout="row" flex>
+    {% if user.is_authenticated %}
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+            <md-toolbar class="md-theme-indigo" ng-controller="LeftCtrl" hide-gt-md>
+                <div layout="row">
+                    <div class="md-toolbar-tools">Sidenav Left</div>
+                    <md-button ng-click="close()" class="md-icon-button">
+                        <ng-md-icon icon="close"></ng-md-icon>
+                    </md-button>
+                </div>
+            </md-toolbar>
+            <md-content layout-padding >
+                <a href="/personas">
+                    <ng-md-icon icon="people"></ng-md-icon>
+                    <label>
+                        Personas
+                    </label>
+                </a>
+                <a href="/personas">
+                    <ng-md-icon icon="landscape"></ng-md-icon>
+                    <label>
+                        Cultivos
+                    </label>
+                </a>
+                <a href="/personas">
+                    <ng-md-icon icon="texture"></ng-md-icon>
+                    <label>
+                        lotes
+                    </label>
+                </a>
+            </md-content>
+        </md-sidenav>
+    {% endif %}
+    <md-content class="wrapper-content">
+        {%  block content %}{% endblock %}
+    </md-content>
+    {% block js%}{% endblock%}
+</section>
 </body>
 <script type="text/javascript" src="/Frontend/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/Frontend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

@@ -7,18 +7,20 @@ from django.conf.urls.static import static
 
 urlpatterns = [
                   url(r'^admin/', include(admin.site.urls)),
+                  url(r'^$', 'django.contrib.auth.views.login', {'template_name': 'index.html'}, name='login'),
+                  url(r'^cerrar/$', 'django.contrib.auth.views.logout_then_login', name='logout'),
 
+                  url(r'^inicio/$', inicio, name='inicio'),
                   url(r'^fecha/$', horas_adelante),
                   url(r'^personas/$', listar, name='personas'),
                   url(r'^crear/personas/$', crear_usuario, name='crear_personas'),
-                  url(r'^$', 'django.contrib.auth.views.login', {'template_name': 'index.html'}, name='login'),
-                  url(r'^cerrar/$', 'django.contrib.auth.views.logout_then_login', name='logout'),
                   url(r'^cultivo/$', crear_cultivo, name='crear_cultivo'),
-                  url(r'^inicio/$', inicio, name='inicio'),
+
                   url(r'^informacion/usuario/(?P<cedula>\w+)/$', inf_user, name="informacion"),
                   url(r'^informacion/cultivo/(?P<id_cultivo>\w+)/$', inf_cultivo, name="info_cultivo"),
                   url(r'^editar/usuario/(?P<cedula>\w+)/$', editar_usuario, name="editar_usuario"),
                   url(r'^editar/cultivo/(?P<id_cultivo>\w+)/$', editar_cultivo, name="editar_cultivo"),
                   url(r'^eliminar/usuario/(?P<cedula>\w+)/$', eliminar_usuario, name="eliminar_usuario"),
                   url(r'^eliminar/cultivo/(?P<id_cultivo>\w+)/$', eliminar_cultivo, name="eliminar_cultivo"),
+
               ] + static('Frontend/', document_root=settings.FRONTEND_URL)
