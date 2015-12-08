@@ -4,6 +4,7 @@ body,html{
   height:  100%;
   width: 100%;
 }
+
 .middle{
   position: absolute;
   top: 50%;
@@ -35,8 +36,11 @@ md-sidenav {
 }
 
 .wrapper-content{
-  background-color:transparent !important;
-  height: 100%;
+  background-color: transparent !important;
+  height: auto;
+  overflow: visible;
+  position: relative;
+  width: 100%;
 
   &>div.container{
     height: 60%;
@@ -47,21 +51,23 @@ md-sidenav {
 
 
   }
-  .login-form{
-      @extend .middle;
-      width: 300px;
-      border-radius: 0.2em;
-      padding: 1em;
-      overflow: visible;
-      box-shadow: 0em 0.5em #8BC34A;
 
-      .wrapper-logo{
-        position: absolute;
-        transform: translate(25%, 0%);
-        top:-8em;
-        img{
-          height: 11em;
-        }
+  .login-form{
+    @extend .middle;
+    transform: translate(-50%, 90%);
+    width: 300px;
+    border-radius: 0.2em;
+    padding: 1em;
+    overflow: visible;
+    box-shadow: 0em 0.5em #8BC34A;
+
+    .wrapper-logo{
+      position: absolute;
+      transform: translate(25%, 0%);
+      top:-8em;
+      img{
+        height: 11em;
       }
     }
+  }
 }
