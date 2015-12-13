@@ -1,0 +1,16 @@
+/* line 7, ../sass/assets.scss */
+[class*="-icon"],
+.logo {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50% 50%;
+  cursor: pointer;
+}
+
+/* line 15, ../sass/assets.scss */
+.background-banner {
+  background-image: url("../../resources/images/img6.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 0%;
+  background-size: cover;
+}

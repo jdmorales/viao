@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="4" />
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="PostgreSQL - viao_db@localhost" uuid="487d659b-8478-469f-84d8-6d8237bf389e">
+      <secret-storage>master_key</secret-storage>
+      <user-name>postgres</user-name>
+      <schema-pattern>viao_db.pg_catalog viao_db.public</schema-pattern>
+      <default-schemas>viao_db.pg_catalog viao_db.public</default-schemas>
+    </data-source>
+  </component>
+</project>

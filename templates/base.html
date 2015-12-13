@@ -36,13 +36,16 @@
                 <ng-md-icon icon="menu"></ng-md-icon>
             </md-button>
         {% endif %}
-        <h2>
+        <h2 class="title-logo">
+            <img src="/Frontend/resources/images/viao_logo.jpg">
             <span>Viao Project</span>
         </h2>
         <span flex=""></span>
-        <md-button class="md-icon-button" aria-label="Favorite">
-            <md-icon md-svg-icon="/Frontend/resources/images/viao_logo.jpg" ></md-icon>
-        </md-button>
+        {% if  user.is_authenticated %}
+            <md-button  href="/cerrar" class="md-icon-button">
+                <ng-md-icon icon="logout"></ng-md-icon>
+            </md-button>
+        {% endif %}
     </div>
 </md-toolbar>
 <section layout="row" flex>
@@ -50,7 +53,12 @@
         <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
             <md-toolbar class="md-theme-indigo" ng-controller="LeftCtrl" hide-gt-md>
                 <div layout="row">
-                    <div class="md-toolbar-tools">Sidenav Left</div>
+                    <div class="md-toolbar-tools">
+                        <h2 class="title-logo">
+                            <img src="/Frontend/resources/images/viao_logo.jpg">
+                            <span>Viao Project</span>
+                        </h2>
+                    </div>
                     <md-button ng-click="close()" class="md-icon-button">
                         <ng-md-icon icon="close"></ng-md-icon>
                     </md-button>
@@ -63,7 +71,7 @@
                         Personas
                     </label>
                 </a>
-                <a href="/personas">
+                <a href="#">
                     <ng-md-icon icon="landscape"></ng-md-icon>
                     <label>
                         Cultivos
@@ -79,6 +87,13 @@
         </md-sidenav>
     {% endif %}
     <md-content class="wrapper-content">
+        <form ng-hide="false" class="form-ingreso" rol="form"  method="POST">{% csrf_token %}
+            <p><input class="form-control input-lg"  type="text" placeholder="Cédula" name="username" id="usu" required autofocus></p>
+            <p><input  class="form-control input-lg" type="password"  placeholder="Contraseña" name="password" id="pw" required>
+                <a href="#">Olvidaste tu contraseña?</a></p>
+
+            <p><input  class="btn-primary btn-lg btn-block" type="submit" value="Aceptar"></p>
+        </form>
         {%  block content %}{% endblock %}
     </md-content>
     {% block js%}{% endblock%}

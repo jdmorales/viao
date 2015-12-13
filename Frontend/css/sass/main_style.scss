@@ -13,6 +13,19 @@ body,html{
 }
 
 
+.title-logo{
+  background-color: rgba(255, 255, 255, 0.14);
+  border-radius: 3px;
+  padding: 0.2em 0.5em 0.2em 3em;
+  position: relative;
+  img{
+    height: 46px;
+    position: absolute;
+    left: 7px;
+    top: -12px;
+  }
+}
+
 
 md-sidenav {
   md-content {
@@ -25,10 +38,11 @@ md-sidenav {
       color: #8BC34A;
       PADDING: 0.5em 0.5em;
       text-decoration: none;
+      border-bottom: 2px solid white;
 
-      &:hover{
+      &:hover,&:focus{
         color:whitesmoke;
-        background-color: #445D27;
+        background-color: #565656;
         text-decoration:none;
       }
     }

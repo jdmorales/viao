@@ -1,10 +1,10 @@
 angular.module('ngAppViao', ['ngMaterial','ngMdIcons'])
-/*
+
     .config(function($httpProvider){
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     })
-*/
+
     .config(function($mdThemingProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('light-green')

@@ -1,5 +1,7 @@
-from django.shortcuts import render_to_response, render, redirect
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render_to_response, HttpResponse, HttpResponseRedirect, RequestContext, render
 from django.http import JsonResponse
+
 from django.template import Context, RequestContext
 from django.contrib.auth.models import User
 from backend.form import PersonaForm, CultivoForm, EditarPersonaForm, EditarCultivoForm
@@ -12,6 +14,17 @@ from django.core.mail import EmailMultiAlternatives
 import json
 import yaml
 import hashlib
+
+class log():
+    @staticmethod
+    def log_in(request, *args, **kwargs):
+        print(request.POST)
+        response = {'msn': 3, 'exito': 3, 'errores': 1}
+        return JsonResponse(response)
+
+    @staticmethod
+    def log_out(request, *args, **kwargs):
+        logout(request)
 
 
 @login_required(redirect_field_name=LOGIN_URL)

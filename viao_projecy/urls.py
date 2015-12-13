@@ -1,15 +1,16 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from backend.views import horas_adelante, crear_usuario, listar, crear_cultivo, inicio, inf_user, inf_cultivo, \
+from backend.views import log,horas_adelante, crear_usuario, listar, crear_cultivo, inicio, inf_user, inf_cultivo, \
     editar_usuario, editar_cultivo, eliminar_usuario, eliminar_cultivo
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
                   url(r'^admin/', include(admin.site.urls)),
+
                   url(r'^$', 'django.contrib.auth.views.login', {'template_name': 'index.html'}, name='login'),
                   url(r'^cerrar/$', 'django.contrib.auth.views.logout_then_login', name='logout'),
-
                   url(r'^inicio/$', inicio, name='inicio'),
                   url(r'^fecha/$', horas_adelante),
                   url(r'^personas/$', listar, name='personas'),

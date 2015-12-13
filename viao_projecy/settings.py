@@ -25,8 +25,6 @@ SECRET_KEY = 'rgyjr8_0mf@@3y-b5!@xhy4j3b1k28qcnvl5ixmzk8c!-z#e1$'
 DEBUG = True
 
 
-
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

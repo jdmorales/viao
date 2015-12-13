@@ -1,0 +1,97 @@
+/* line 7, ../sass/assets.scss */
+[class*="-icon"],
+.logo {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50% 50%;
+  cursor: pointer;
+}
+
+/* line 15, ../sass/assets.scss */
+.background-banner {
+  background-image: url("../../resources/images/img6.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 0%;
+  background-size: cover;
+}
+
+/* line 3, ../sass/main_style.scss */
+body, html {
+  height: 100%;
+  width: 100%;
+}
+
+/* line 8, ../sass/main_style.scss */
+.middle, .wrapper-content .login-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* line 16, ../sass/main_style.scss */
+.title-logo {
+  background-color: rgba(255, 255, 255, 0.14);
+  border-radius: 3px;
+  padding: 0.2em 0.5em 0.2em 3em;
+  position: relative;
+}
+/* line 21, ../sass/main_style.scss */
+.title-logo img {
+  height: 46px;
+  position: absolute;
+  left: 7px;
+  top: -12px;
+}
+
+/* line 32, ../sass/main_style.scss */
+md-sidenav md-content a {
+  width: 100%;
+  background-color: whitesmoke;
+  font-size: 1.5em;
+  position: relative;
+  display: block;
+  color: #8BC34A;
+  PADDING: 0.5em 0.5em;
+  text-decoration: none;
+  border-bottom: 2px solid white;
+}
+/* line 43, ../sass/main_style.scss */
+md-sidenav md-content a:hover, md-sidenav md-content a:focus {
+  color: whitesmoke;
+  background-color: #565656;
+  text-decoration: none;
+}
+
+/* line 52, ../sass/main_style.scss */
+.wrapper-content {
+  background-color: transparent !important;
+  height: auto;
+  overflow: visible;
+  position: relative;
+  width: 100%;
+}
+/* line 59, ../sass/main_style.scss */
+.wrapper-content > div.container {
+  height: 60%;
+  position: relative;
+}
+/* line 69, ../sass/main_style.scss */
+.wrapper-content .login-form {
+  transform: translate(-50%, 90%);
+  width: 300px;
+  border-radius: 0.2em;
+  padding: 1em;
+  overflow: visible;
+  box-shadow: 0em 0.5em #8BC34A;
+}
+/* line 78, ../sass/main_style.scss */
+.wrapper-content .login-form .wrapper-logo {
+  position: absolute;
+  transform: translate(25%, 0%);
+  top: -8em;
+}
+/* line 82, ../sass/main_style.scss */
+.wrapper-content .login-form .wrapper-logo img {
+  height: 11em;
+}
